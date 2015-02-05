@@ -15,10 +15,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        Parse.enableLocalDatastore()
+        Parse.setApplicationId("0xowBFLdGYOPEG8dAMeQv2gzQdTSeJjZlPquhTt6",
+            clientKey:"chQQUGZfVD3d21wEQFBuJTWu0mjwjJJ1yejg8JK1")
+        
+        // Facebook Login Configuration
+        FBLoginView.self
+        FBProfilePictureView.self
+        
+        // [Optional] Track statistics around application opens.
+        //    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
+        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.Default
         return true
     }
 
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+        var wasHandled : Bool = FBAppCall.handleOpenURL(url, sourceApplication: sourceApplication)
+        return wasHandled
+    }
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
@@ -40,7 +55,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
+    
+    func uicolorFromHex(rgbValue:UInt32)->UIColor{
+        let red = CGFloat((rgbValue & 0xFF0000) >> 16)/256.0
+        let green = CGFloat((rgbValue & 0xFF00) >> 8)/256.0
+        let blue = CGFloat(rgbValue & 0xFF)/256.0
+        
+        return UIColor(red:red, green:green, blue:blue, alpha:1.0)
+    }
 }
 
