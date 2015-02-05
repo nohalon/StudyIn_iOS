@@ -8,6 +8,12 @@
 
 import UIKit
 
-class MainTabBarController: UITabBarController {
+class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     var user : User?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.delegate = self
+    }
+
 }

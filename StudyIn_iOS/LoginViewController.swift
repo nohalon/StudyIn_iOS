@@ -11,16 +11,19 @@ import UIKit
 class LoginViewController: UIViewController, FBLoginViewDelegate {
     
     @IBOutlet var fbLoginView: FBLoginView!
-    var loginUser : User?
+    let user = User.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.fbLoginView.delegate = self
         self.fbLoginView.readPermissions = ["public_profile", "email", "user_friends"]
-        
-
     }
+    
+    /*override func viewDidAppear(animated: Bool) {
+        if let mainTabBar =  self.tabBarController as? MainTabBarController {}
+        //loginUser = mainTabBar.user
+    }*/
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -44,11 +47,9 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
         var userID = user.objectID
         var userEmail = user.objectForKey("email") as String
         
-        
-        // set the user object
-        if let mainTabBarController = self.tabBarController as? MainTabBarController {
-             mainTabBarController.user = User(name: userName, email: userEmail, profilePicture: userID)
-        }
+        self.user.name = userName
+        self.user.email = userEmail
+        self.user.profilePicture = userID
     }
     
     func loginViewShowingLoggedOutUser(loginView : FBLoginView!) {

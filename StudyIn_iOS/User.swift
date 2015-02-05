@@ -9,6 +9,25 @@
 import Foundation
 
 class User {
+    class var sharedInstance: User {
+        struct Static {
+            static var instance: User?
+            static var token: dispatch_once_t = 0
+        }
+        
+        dispatch_once(&Static.token) {
+            Static.instance = User()
+        }
+        
+        return Static.instance!
+    }
+    
+    var name : String?
+    var email : String?
+    var profilePicture : String?
+}
+
+/*class User {
     
     let userName : String = ""
     let userEmail : String = ""
@@ -19,4 +38,4 @@ class User {
         self.userEmail = email
         self.userProfilePicture = profilePicture
     }
-}
+}*/
