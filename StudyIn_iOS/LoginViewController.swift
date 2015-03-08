@@ -11,7 +11,7 @@ import UIKit
 class LoginViewController: UIViewController, FBLoginViewDelegate {
     
     @IBOutlet var fbLoginView: FBLoginView!
-    let user = User.sharedInstance
+    let loginUser = User.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,11 +45,12 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
 
         let userName = user.name
         var userID = user.objectID
+        var facebookProfileUrl = "http://graph.facebook.com/\(userID)/picture?type=large"
         var userEmail = user.objectForKey("email") as String
         
-        self.user.name = userName
-        self.user.email = userEmail
-        self.user.profilePicture = userID
+        self.loginUser.name = userName
+        self.loginUser.email = userEmail
+        self.loginUser.profilePicture = userID
     }
     
     func loginViewShowingLoggedOutUser(loginView : FBLoginView!) {

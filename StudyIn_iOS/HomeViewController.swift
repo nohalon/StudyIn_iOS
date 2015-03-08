@@ -10,6 +10,8 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
+    let user = User.sharedInstance
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,6 +23,10 @@ class HomeViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func segueToCheckInOut(sender: UIButton) {
+        self.performSegueWithIdentifier("StatusCheckInSegue", sender: self)
     }
     
     @IBAction func unwindToHome(segue:UIStoryboardSegue) {

@@ -1,13 +1,6 @@
-//
-//  User.swift
-//  StudyIn_iOS
-//
-//  Created by Noha Alon on 2/4/15.
-//  Copyright (c) 2015 Noha Alon & Lucas David. All rights reserved.
-//
-
 import Foundation
 
+// Singleton instance of User
 class User {
     class var sharedInstance: User {
         struct Static {
@@ -22,20 +15,9 @@ class User {
         return Static.instance!
     }
     
-    var name : String?
-    var email : String?
-    var profilePicture : String?
+    var name : String = ""           // The users name (via facebook login).
+    var email : String = ""          // The email address (via facebook login) of this user.
+    var profilePicture : String = "" // The URL (via facebook login) pointing to the users profile picture.
+    //var checkIns = [StatusCheckIn]() // The comprehensive list of all this users check ins & statuses.
+    var isCheckedIn : Bool = false   // Indicates if user is currently checked in.
 }
-
-/*class User {
-    
-    let userName : String = ""
-    let userEmail : String = ""
-    let userProfilePicture : String = "";
-    
-    init(name : String, email : String, profilePicture : String) {
-        self.userName = name
-        self.userEmail = email
-        self.userProfilePicture = profilePicture
-    }
-}*/

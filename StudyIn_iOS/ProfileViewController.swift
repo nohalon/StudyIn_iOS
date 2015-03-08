@@ -13,17 +13,25 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var profilePictureView: FBProfilePictureView!
     @IBOutlet weak var userNameLbl: UILabel!
-    var profileUser : User?
+    let user = User.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        if let mainTabBarController = self.tabBarController as? MainTabBarController {
-            self.profileUser = mainTabBarController.user
-        }
+        loadUserDetails()
+    }
+    
+    func loadUserDetails() {
+        profilePictureView.profileID = user.profilePicture
+        userNameLbl.text = user.name
         
-        //profilePictureView.profileID = profileUser!.userProfilePicture
+        self.profilePictureView.layer.cornerRadius = self.profilePictureView.frame.size.width / 2;
+        self.profilePictureView.clipsToBounds = true;
+        
+        self.profilePictureView.layer.borderWidth = 2.0;
+        var myColor : UIColor = uicolorFromHex(0x62CDFF)
+        self.profilePictureView.layer.borderColor = myColor.CGColor
     }
 
     override func didReceiveMemoryWarning() {
@@ -49,5 +57,13 @@ class ProfileViewController: UIViewController {
         optionMenu.addAction(cancelAction)
         
         self.presentViewController(optionMenu, animated: true, completion: nil)
+    }
+    
+    func uicolorFromHex(rgbValue:UInt32)->UIColor{
+        let red = CGFloat((rgbValue & 0xFF0000) >> 16)/256.0
+        let green = CGFloat((rgbValue & 0xFF00) >> 8)/256.0
+        let blue = CGFloat(rgbValue & 0xFF)/256.0
+        
+        return UIColor(red:red, green:green, blue:blue, alpha:1.0)
     }
 }
