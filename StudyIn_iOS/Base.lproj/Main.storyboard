@@ -14,10 +14,8 @@
             <string>Lato-Light</string>
             <string>Lato-Light</string>
             <string>Lato-Light</string>
-            <string>Lato-Light</string>
         </mutableArray>
         <mutableArray key="Lato-Regular.ttf">
-            <string>Lato-Regular</string>
             <string>Lato-Regular</string>
         </mutableArray>
     </customFonts>
@@ -29,7 +27,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="xlq-qV-dJM">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
                             <tableViewSection id="axL-qf-wdP">
                                 <cells>
@@ -251,21 +249,44 @@
             <point key="canvasLocation" x="1046" y="-2225"/>
         </scene>
         <!--Home-->
-        <scene sceneID="tne-QT-ifu">
+        <scene sceneID="p5R-K2-NXo">
             <objects>
-                <viewController title="Home" id="BYZ-38-t0r" customClass="HomeViewController" customModule="StudyIn_iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
+                <tableViewController id="hPG-aL-GiV" customClass="HomeViewController" customModule="StudyIn_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="72" sectionHeaderHeight="22" sectionFooterHeight="22" id="pCr-hK-S0U">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Home" id="Um5-NU-a6Q">
-                        <barButtonItem key="rightBarButtonItem" id="hXl-SO-Tf6">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="nrO-kh-vwH" userLabel="checkIn_btn">
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="72" id="abx-jF-nQG" customClass="UserPostCell" customModule="StudyIn_iOS" customModuleProvider="target">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="abx-jF-nQG" id="DdJ-Xt-GeY">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lUY-hU-raK" userLabel="NameLabel">
+                                            <rect key="frame" x="14" y="0.0" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XZL-Lu-IKZ" userLabel="PostLabel">
+                                            <rect key="frame" x="14" y="29" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="hPG-aL-GiV" id="K8n-MY-Yrj"/>
+                            <outlet property="delegate" destination="hPG-aL-GiV" id="sxf-Kl-SJR"/>
+                        </connections>
+                    </tableView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Home" id="tRy-2n-pjD">
+                        <barButtonItem key="rightBarButtonItem" id="ThI-oG-lFF">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="ozu-Yg-W9S" userLabel="checkIn_btn">
                                 <rect key="frame" x="274" y="-185" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="check_in_transparent_gray">
@@ -278,21 +299,16 @@
                                     </attributedString>
                                 </state>
                                 <connections>
-                                    <action selector="segueToCheckInOut:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Zik-SV-nzb"/>
+                                    <segue destination="fjS-ku-BWB" kind="modal" identifier="StatusCheckInSegue" id="6pi-fb-uZ0"/>
                                 </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
-                    <connections>
-                        <segue destination="Cfe-9m-9pH" kind="modal" identifier="StatusCheckOutSegue" id="A2E-h6-wex"/>
-                        <segue destination="fjS-ku-BWB" kind="modal" identifier="StatusCheckInSegue" id="Isb-pJ-xAm"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XZX-2a-cLF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-366" y="-900"/>
+            <point key="canvasLocation" x="-406" y="-1595"/>
         </scene>
         <!--Messages-->
         <scene sceneID="YTi-f9-9tF">
@@ -381,85 +397,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nYU-6Z-eGY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1012" y="-1646"/>
-        </scene>
-        <!--PostCheckOut-->
-        <scene sceneID="6LF-Of-aTT">
-            <objects>
-                <viewController title="CheckOut" id="EpG-ya-Wja" userLabel="PostCheckOut" customClass="StatusCheckOutViewController" customModule="StudyIn_iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="2fI-wZ-JJ8"/>
-                        <viewControllerLayoutGuide type="bottom" id="F2h-Nw-Ukh"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="cMA-3Q-dYv">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How was your study sesh?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KwX-ai-8Ra">
-                                <rect key="frame" x="52" y="179" width="216" height="25"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="216" id="JRr-Wa-3Rf"/>
-                                    <constraint firstAttribute="height" constant="25" id="Wkc-io-yGj"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="25" id="kiS-bg-EPE"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="19"/>
-                                <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VXY-KD-YmC" userLabel="statusTxt">
-                                <rect key="frame" x="32" y="212" width="256" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="256" id="11k-6J-FZr"/>
-                                    <constraint firstAttribute="height" constant="30" id="z4z-rV-olG"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A9r-Cu-iDP">
-                                <rect key="frame" x="98" y="332" width="125" height="42"/>
-                                <color key="backgroundColor" red="0.38431372549999998" green="0.80392156859999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="42" id="JrT-b4-S23"/>
-                                    <constraint firstAttribute="width" constant="125" id="Zl8-Ni-ien"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="25"/>
-                                <state key="normal" title="Check Out">
-                                    <color key="titleColor" red="0.88833648990000003" green="0.8789855795" blue="0.8789855795" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="checkOutBtnClicked:" destination="EpG-ya-Wja" eventType="touchUpInside" id="G25-5M-t0j"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="VXY-KD-YmC" firstAttribute="top" secondItem="KwX-ai-8Ra" secondAttribute="bottom" constant="8" symbolic="YES" id="5fz-x8-Jk7"/>
-                            <constraint firstAttribute="centerX" secondItem="KwX-ai-8Ra" secondAttribute="centerX" id="7C8-Oe-2rq"/>
-                            <constraint firstAttribute="centerX" secondItem="VXY-KD-YmC" secondAttribute="centerX" id="RIo-2g-Ils"/>
-                            <constraint firstAttribute="centerX" secondItem="A9r-Cu-iDP" secondAttribute="centerX" id="dhc-zX-kIh"/>
-                            <constraint firstItem="A9r-Cu-iDP" firstAttribute="top" secondItem="VXY-KD-YmC" secondAttribute="bottom" constant="90" id="iHL-eo-Wue"/>
-                            <constraint firstItem="KwX-ai-8Ra" firstAttribute="centerX" secondItem="cMA-3Q-dYv" secondAttribute="centerX" id="j9E-jn-gxs"/>
-                            <constraint firstItem="KwX-ai-8Ra" firstAttribute="top" secondItem="2fI-wZ-JJ8" secondAttribute="bottom" constant="115" id="uCd-XF-GJO"/>
-                            <constraint firstItem="KwX-ai-8Ra" firstAttribute="centerX" secondItem="A9r-Cu-iDP" secondAttribute="centerX" id="uT0-ix-Phj"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Post or Check-Out" id="ZQx-Zf-swd">
-                        <barButtonItem key="leftBarButtonItem" image="cancel-25" id="li0-Sj-hCH">
-                            <color key="tintColor" red="0.41176470590000003" green="0.42352941179999998" blue="0.4549019608" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <connections>
-                                <segue destination="qOC-dd-zee" kind="unwind" unwindAction="unwindToHome:" id="WdG-2w-bL8"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="checkOutAction" destination="A9r-Cu-iDP" id="0Ec-bs-FF8"/>
-                        <outlet property="checkOutStatusTxt" destination="VXY-KD-YmC" id="6K8-n8-tho"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="d0O-Xq-QR5" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="qOC-dd-zee" userLabel="Exit" sceneMemberID="exit"/>
-            </objects>
-            <point key="canvasLocation" x="985" y="-1562"/>
         </scene>
         <!--Groups-->
         <scene sceneID="5JX-Gh-Poi">
@@ -559,7 +496,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="8Fc-mM-9aj"/>
+                        <segue destination="hPG-aL-GiV" kind="relationship" relationship="rootViewController" id="zNp-dQ-e93"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tfC-2I-CWb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -637,28 +574,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qjx-Wq-5bo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1012" y="-174"/>
-        </scene>
-        <!--PostOrCheckOut Navigation Controller-->
-        <scene sceneID="eXL-GE-OuD">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Cfe-9m-9pH" userLabel="PostOrCheckOut Navigation Controller" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Qq9-wX-lxP">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <textAttributes key="titleTextAttributes">
-                            <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="0.0"/>
-                            <color key="textColor" red="0.38431372549999998" green="0.80392156859999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        </textAttributes>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="EpG-ya-Wja" kind="relationship" relationship="rootViewController" id="eTZ-x3-7jV"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5FK-wJ-CXi" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="381" y="-1562"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="FtB-bv-7Q0">

@@ -15,7 +15,6 @@ class StatusCheckInViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet var classTxt: UITextField!
     @IBOutlet var professorTxt: UITextField!
     @IBOutlet var privatePostSwitch: UISwitch!
-    @IBOutlet var publicOrSilentCheckIn: UISegmentedControl!
     @IBOutlet var checkInBtn: UIButton!
     @IBOutlet var locationLabel: UILabel!
     
@@ -87,26 +86,59 @@ class StatusCheckInViewController: UITableViewController, UITextFieldDelegate {
     
     // Event handler for post action
     func postAction() {
+        var currentTime = NSDate();
+        var statusText = self.statusTxt.text ?? "";
+        var classText = self.classTxt.text ?? "";
+        var professorText = self.professorTxt.text ?? "";
         
+        var post : UserPost = UserPost(statusText : statusText, classText : classText, professorText : professorText, timeStamp : currentTime)
+        
+        user.userPosts.append(post)
         self.performSegueWithIdentifier("UnwindToHomeSegue", sender : self)
     }
     
     // Event handler for check-in action
     func checkInAction () {
-        user.isCheckedIn = true;
-        println("checking in")
-        self.performSegueWithIdentifier("UnwindToHomeSegue", sender : self)
+        var currentTime = NSDate();
+        var locationLabel = self.locationLabel.text!
+        
+        if (locationLabel != "Name your location") {
+            user.isCheckedIn = true;
+            var checkIn = UserCheckInOut(type : .CHECKIN, silentPost : isPrivateCheckIn(), location : locationLabel, timeStamp : currentTime);
+            user.userCheckInOuts.append(checkIn);
+            self.performSegueWithIdentifier("UnwindToHomeSegue", sender : self)
+        }
+        else {
+            showAlertViewWithMessage("Your New Check In", message : "Hey there, we ask that you please specify your location when you want to check in, thanks!")
+        }
+        
+        // Save post information as well
+        //postAction();
     }
     
     // Event handler for check-out action
     func checkOutAction() {
-        user.isCheckedIn = false;
-        println("checking out")
-        self.performSegueWithIdentifier("UnwindToHomeSegue", sender : self)
+        var currentTime = NSDate();
+        var locationLabel = self.locationLabel.text!
+        
+        if (locationLabel != "Name your location") {
+            user.isCheckedIn = true;
+            var checkOut = UserCheckInOut(type : .CHECKOUT, silentPost : isPrivateCheckIn(), location : locationLabel, timeStamp : currentTime);
+            user.userCheckInOuts.append(checkOut);
+            self.performSegueWithIdentifier("UnwindToHomeSegue", sender : self)
+        }
+        else {
+            showAlertViewWithMessage("Your New Check Out", message : "Hey there, we ask that you please specify your location when you want to check out, thanks!")
+        }
     }
     
-    func getPostInfo() {
+    // Shows an alert view with a given title and message
+    func showAlertViewWithMessage(title : String, message : String) {
+        let alertController = UIAlertController(title: title, message:
+            message, preferredStyle: UIAlertControllerStyle.Alert)
+        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
         
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -118,7 +150,7 @@ class StatusCheckInViewController: UITableViewController, UITextFieldDelegate {
     func isPrivateCheckIn() -> Bool {
         var privateCheckIn = false
         
-        if (publicOrSilentCheckIn.selectedSegmentIndex == 1) {
+        if (privatePostSwitch.on) {
             privateCheckIn = true
         }
         
