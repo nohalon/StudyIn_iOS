@@ -19,6 +19,7 @@ class StatusCheckInViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet var locationLabel: UILabel!
     
     let user = User.sharedInstance
+    var delegate : HomeViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,7 +66,7 @@ class StatusCheckInViewController: UITableViewController, UITextFieldDelegate {
         let screenSize : CGRect = UIScreen.mainScreen().bounds
         let screenWidth = screenSize.width
         
-        let buttonItemImg : UIButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton
+        let buttonItemImg : UIButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
         buttonItemImg.titleLabel?.tintColor = UIColorFromRGB(0xFFFFFF)
         
         if let font = UIFont(name: "Lato", size: 15) {
@@ -94,7 +95,16 @@ class StatusCheckInViewController: UITableViewController, UITextFieldDelegate {
         var post : UserPost = UserPost(statusText : statusText, classText : classText, professorText : professorText, timeStamp : currentTime)
         
         user.userPosts.append(post)
+        
+        //self.delegate.updateView()
         self.performSegueWithIdentifier("UnwindToHomeSegue", sender : self)
+        
+        // set the delegate of the homeviewcontroller
+        // save to parse
+        // check if location is already in the location table
+            // it it is
+            // find and get it from parse
+            // it its not, create it
     }
     
     // Event handler for check-in action
@@ -193,8 +203,8 @@ class StatusCheckInViewController: UITableViewController, UITextFieldDelegate {
         var placePicker : FBPlacePickerViewController = FBPlacePickerViewController()
         placePicker.title = "Where are you studying?"
         
-        if (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.AuthorizedWhenInUse ||
-            CLLocationManager.authorizationStatus() == CLAuthorizationStatus.Authorized) {
+        //if (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.AuthorizedWhenInUse ||
+            //CLLocationManager.authorizationStatus() == CLAuthorizationStatus.AuthorizedAlways) {
                 
                 placePicker.locationCoordinate = CLLocationCoordinate2D(latitude: 35.305005, longitude: -120.66249399999998)
                 placePicker.loadData()
@@ -204,10 +214,10 @@ class StatusCheckInViewController: UITableViewController, UITextFieldDelegate {
                         var placeName = placePicker.selection.name;
                         self.locationLabel.text = placeName
                     }))
-        }
+        /*}
         else {
             // User did not authenticate
-        }
+        }*/
     }
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {

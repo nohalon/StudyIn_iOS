@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6724" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="3tW-XV-dl6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7519.1" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="3tW-XV-dl6">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6711"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7513.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -14,8 +14,13 @@
             <string>Lato-Light</string>
             <string>Lato-Light</string>
             <string>Lato-Light</string>
+            <string>Lato-Light</string>
+            <string>Lato-Light</string>
+            <string>Lato-Light</string>
         </mutableArray>
         <mutableArray key="Lato-Regular.ttf">
+            <string>Lato-Regular</string>
+            <string>Lato-Regular</string>
             <string>Lato-Regular</string>
         </mutableArray>
     </customFonts>
@@ -195,7 +200,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Jda-vt-NIF" id="zEo-Pe-TP0">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Private Post" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yad-5J-Ybn">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Private Post" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yad-5J-Ybn">
                                                     <rect key="frame" x="25" y="0.0" width="68" height="44"/>
                                                     <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="13"/>
                                                     <color key="textColor" red="0.38431372549999998" green="0.80392156859999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -257,25 +262,139 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="72" id="abx-jF-nQG" customClass="UserPostCell" customModule="StudyIn_iOS" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="postCell" rowHeight="93" id="j6G-4I-sFc" userLabel="postCell" customClass="UserPostCell" customModule="StudyIn_iOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="abx-jF-nQG" id="DdJ-Xt-GeY">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="j6G-4I-sFc" id="E4r-mb-Ybu">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lUY-hU-raK" userLabel="NameLabel">
-                                            <rect key="frame" x="14" y="0.0" width="42" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XZL-Lu-IKZ" userLabel="PostLabel">
-                                            <rect key="frame" x="14" y="29" width="42" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wHK-4S-qw4" customClass="FBProfilePictureView">
+                                            <rect key="frame" x="8" y="21" width="50" height="50"/>
+                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="50" id="S8b-kN-1BA"/>
+                                                <constraint firstAttribute="width" constant="50" id="hfh-fX-ytZ"/>
+                                            </constraints>
+                                        </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wkP-IC-RVB" userLabel="PostTextView">
+                                            <rect key="frame" x="61" y="8" width="251" height="76"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AaS-gL-c4z" userLabel="NameLabel">
+                                                    <rect key="frame" x="3" y="3" width="245" height="16"/>
+                                                    <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="13"/>
+                                                    <color key="textColor" red="0.38431372549999998" green="0.80392156859999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Post" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P4e-m9-ZPp" userLabel="PostLabel">
+                                                    <rect key="frame" x="3" y="23" width="245" height="51"/>
+                                                    <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="12"/>
+                                                    <color key="textColor" red="0.38823529410000002" green="0.41960784309999999" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstItem="AaS-gL-c4z" firstAttribute="leading" secondItem="wkP-IC-RVB" secondAttribute="leading" constant="3" id="IC4-62-iKm"/>
+                                                <constraint firstAttribute="trailing" secondItem="P4e-m9-ZPp" secondAttribute="trailing" constant="3" id="MEj-l5-gWE"/>
+                                                <constraint firstItem="AaS-gL-c4z" firstAttribute="top" secondItem="wkP-IC-RVB" secondAttribute="top" constant="3" id="W1O-k0-XnM"/>
+                                                <constraint firstAttribute="bottom" secondItem="P4e-m9-ZPp" secondAttribute="bottom" constant="2" id="bfe-j4-vYZ"/>
+                                                <constraint firstAttribute="trailing" secondItem="AaS-gL-c4z" secondAttribute="trailing" constant="3" id="fvH-7j-X90"/>
+                                                <constraint firstItem="P4e-m9-ZPp" firstAttribute="top" secondItem="AaS-gL-c4z" secondAttribute="bottom" constant="4" id="n6c-Sf-cnP"/>
+                                                <constraint firstItem="P4e-m9-ZPp" firstAttribute="leading" secondItem="wkP-IC-RVB" secondAttribute="leading" constant="3" id="wSU-BR-KvR"/>
+                                            </constraints>
+                                        </view>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="centerY" secondItem="wkP-IC-RVB" secondAttribute="centerY" id="RoD-2h-Mdr"/>
+                                        <constraint firstItem="wkP-IC-RVB" firstAttribute="trailing" secondItem="E4r-mb-Ybu" secondAttribute="trailingMargin" id="kGc-Sp-re2"/>
+                                        <constraint firstAttribute="centerY" secondItem="wHK-4S-qw4" secondAttribute="centerY" id="pAk-0i-Zu6"/>
+                                        <constraint firstItem="wkP-IC-RVB" firstAttribute="leading" secondItem="wHK-4S-qw4" secondAttribute="trailing" constant="3" id="qdl-UX-vFn"/>
+                                        <constraint firstItem="wHK-4S-qw4" firstAttribute="leading" secondItem="E4r-mb-Ybu" secondAttribute="leadingMargin" id="r6G-IC-D9y"/>
+                                        <constraint firstItem="wkP-IC-RVB" firstAttribute="top" secondItem="E4r-mb-Ybu" secondAttribute="topMargin" id="w1e-Sm-Ykd"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="fbProfPic" destination="wHK-4S-qw4" id="qIC-no-sxx"/>
+                                    <outlet property="nameLabel" destination="AaS-gL-c4z" id="dkd-9V-A4g"/>
+                                    <outlet property="postLabel" destination="P4e-m9-ZPp" id="AMG-Pd-6Kp"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="checkInCell" rowHeight="93" id="G5A-mQ-uA8" customClass="UserCheckInOutCell" customModule="StudyIn_iOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="G5A-mQ-uA8" id="OnA-wI-eWz">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DOu-6n-LMJ" userLabel="Profile Picture View" customClass="FBProfilePictureView">
+                                            <rect key="frame" x="8" y="21" width="50" height="50"/>
+                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="50" id="0Xh-R8-PKz"/>
+                                                <constraint firstAttribute="height" constant="50" id="Q5V-m4-rfU"/>
+                                            </constraints>
+                                        </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qsu-0x-BHf" userLabel="CheckInOutView">
+                                            <rect key="frame" x="61" y="8" width="251" height="76"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cfP-PM-gpP" userLabel="NameLabel">
+                                                    <rect key="frame" x="3" y="3" width="245" height="16"/>
+                                                    <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="13"/>
+                                                    <color key="textColor" red="0.38431372549999998" green="0.80392156859999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Check In/Out" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wlD-r7-jY5">
+                                                    <rect key="frame" x="3" y="23" width="245" height="15"/>
+                                                    <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="12"/>
+                                                    <color key="textColor" red="0.38823529410000002" green="0.41960784309999999" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="locationIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Ocg-Nh-cLB">
+                                                    <rect key="frame" x="3" y="62" width="10" height="13"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="13" id="9sN-LP-SzY"/>
+                                                        <constraint firstAttribute="width" constant="10" id="ndT-r9-dfb"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Cal Poly Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zUu-T4-mYq">
+                                                    <rect key="frame" x="17" y="61" width="231" height="15"/>
+                                                    <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="12"/>
+                                                    <color key="textColor" red="0.38823529410000002" green="0.41960784309999999" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="zUu-T4-mYq" secondAttribute="bottom" id="1NJ-De-egN"/>
+                                                <constraint firstItem="wlD-r7-jY5" firstAttribute="top" secondItem="cfP-PM-gpP" secondAttribute="bottom" constant="4" id="8SU-eK-wY8"/>
+                                                <constraint firstAttribute="bottom" secondItem="Ocg-Nh-cLB" secondAttribute="bottom" constant="1" id="AnY-nc-4zM"/>
+                                                <constraint firstAttribute="trailing" secondItem="cfP-PM-gpP" secondAttribute="trailing" constant="3" id="Cyy-bM-pCI"/>
+                                                <constraint firstItem="zUu-T4-mYq" firstAttribute="leading" secondItem="Ocg-Nh-cLB" secondAttribute="trailing" constant="4" id="EFo-8Y-kbR"/>
+                                                <constraint firstAttribute="trailing" secondItem="zUu-T4-mYq" secondAttribute="trailing" constant="3" id="SwC-dl-otQ"/>
+                                                <constraint firstItem="Ocg-Nh-cLB" firstAttribute="leading" secondItem="Qsu-0x-BHf" secondAttribute="leading" constant="3" id="dT5-4f-Rjs"/>
+                                                <constraint firstItem="wlD-r7-jY5" firstAttribute="leading" secondItem="Qsu-0x-BHf" secondAttribute="leading" constant="3" id="hEG-jw-vi0"/>
+                                                <constraint firstAttribute="trailing" secondItem="wlD-r7-jY5" secondAttribute="trailing" constant="3" id="mQW-M1-Trp"/>
+                                                <constraint firstItem="zUu-T4-mYq" firstAttribute="top" secondItem="wlD-r7-jY5" secondAttribute="bottom" constant="7" id="qz8-YO-96J"/>
+                                                <constraint firstItem="cfP-PM-gpP" firstAttribute="leading" secondItem="Qsu-0x-BHf" secondAttribute="leading" constant="3" id="w4q-dE-qrZ"/>
+                                                <constraint firstItem="cfP-PM-gpP" firstAttribute="top" secondItem="Qsu-0x-BHf" secondAttribute="top" constant="3" id="wb4-mc-KFO"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Qsu-0x-BHf" firstAttribute="top" secondItem="OnA-wI-eWz" secondAttribute="topMargin" id="Pmp-ax-jMK"/>
+                                        <constraint firstAttribute="centerY" secondItem="DOu-6n-LMJ" secondAttribute="centerY" id="S3V-44-MKs"/>
+                                        <constraint firstItem="Qsu-0x-BHf" firstAttribute="bottom" secondItem="OnA-wI-eWz" secondAttribute="bottomMargin" id="ShP-LL-xns"/>
+                                        <constraint firstItem="Qsu-0x-BHf" firstAttribute="leading" secondItem="DOu-6n-LMJ" secondAttribute="trailing" constant="3" id="VpF-4p-0OA"/>
+                                        <constraint firstItem="DOu-6n-LMJ" firstAttribute="leading" secondItem="OnA-wI-eWz" secondAttribute="leadingMargin" id="XYv-Zn-0TC"/>
+                                        <constraint firstItem="Qsu-0x-BHf" firstAttribute="trailing" secondItem="OnA-wI-eWz" secondAttribute="trailingMargin" id="fFl-UN-w3e"/>
+                                        <constraint firstAttribute="centerY" secondItem="Qsu-0x-BHf" secondAttribute="centerY" id="rMk-LA-G3Z"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="checkInOutLabel" destination="wlD-r7-jY5" id="lQ8-R4-8Nq"/>
+                                    <outlet property="fbProfPic" destination="DOu-6n-LMJ" id="LeT-43-y0j"/>
+                                    <outlet property="locationLabel" destination="zUu-T4-mYq" id="hPE-bM-eeg"/>
+                                    <outlet property="nameLabel" destination="cfP-PM-gpP" id="8FT-PA-b3r"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -305,6 +424,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="newsFeedTable" destination="pCr-hK-S0U" id="YJX-Qm-S1q"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XZX-2a-cLF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -17,11 +17,10 @@ enum PostType {
     }
 }
 
-class UserCheckInOut {
+class UserCheckInOut : FeedObject {
     var type : PostType
     var silentPost : Bool
     var location : String
-    var timeStamp : NSDate
     
     init(type : PostType, silentPost : Bool, location : String, timeStamp : NSDate) {
         self.type = type
@@ -34,6 +33,6 @@ class UserCheckInOut {
         }
         
         self.silentPost = silentPost
-        self.timeStamp = timeStamp
+        super.init(timestamp: timeStamp)
     }
 }

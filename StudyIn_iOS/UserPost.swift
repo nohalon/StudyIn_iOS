@@ -8,16 +8,16 @@
 
 import Foundation
 
-class UserPost {
+class UserPost : FeedObject {
     var statusTxt : String
     var classTxt : String
     var professorTxt : String
-    var timeStamp : NSDate
     
     init(statusText : String, classText : String, professorText : String, timeStamp : NSDate) {
         self.statusTxt = statusText
         self.classTxt = classText
         self.professorTxt = professorText
-        self.timeStamp = timeStamp
+        
+        super.init(timestamp: timeStamp)
     }
 }

@@ -21,4 +21,6 @@ class User {
     var isCheckedIn : Bool = false           // Indicates if user is currently checked in.
     var userPosts =  [UserPost]()            // References the list of all the users "posts"
     var userCheckInOuts = [UserCheckInOut]() // References a list of all the users "check-ins" and "check-outs"
+    
+    //var parseUserObject : PFObject = PFObject();
 }
