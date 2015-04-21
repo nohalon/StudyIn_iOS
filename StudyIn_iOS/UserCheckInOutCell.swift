@@ -14,20 +14,37 @@ class UserCheckInOutCell : PFTableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var checkInOutLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var locationIconImg: UIImageView!
     
     let user = User.sharedInstance
+    var userPhotoURL : String!
 
-    func setUpCell() {
-        nameLabel.text = user.name
-        checkInOutLabel.text = "Checking In"
-        checkInOutLabel.sizeToFit()
+    func setUpCell(userName : String, type : FeedObjectType, location : String, photoURL : String) {
+        nameLabel.text = userName
+        self.userPhotoURL = photoURL
         locationLabel.sizeToFit()
-        locationLabel.text = "Cal Poly Library"
+        
+        switch type {
+        case .CHECKIN:
+            locationIconImg.hidden = false
+            locationLabel.hidden = false
+            checkInOutLabel.text = "Checking In"
+        case .CHECKOUT:
+            locationIconImg.hidden = true
+            locationLabel.hidden = true
+            checkInOutLabel.text = "Checking Out"
+        default:
+            checkInOutLabel.text = "Error, should not be anything but a check in/out"
+        }
+        
+        checkInOutLabel.sizeToFit()
+
+        locationLabel.text = location
         addUserPhoto()
     }
     
     func addUserPhoto() {
-        fbProfPic.profileID = user.profilePicture
+        fbProfPic.profileID = userPhotoURL
         
         self.fbProfPic.layer.cornerRadius = self.fbProfPic.frame.size.width / 2
         self.fbProfPic.clipsToBounds = true

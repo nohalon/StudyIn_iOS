@@ -13,11 +13,13 @@ class UserPost : FeedObject {
     var classTxt : String
     var professorTxt : String
     
-    init(statusText : String, classText : String, professorText : String, timeStamp : NSDate) {
+    init(type : FeedObjectType, objectId: String, timeStamp : NSDate,
+        statusText : String, classText : String, professorText : String) {
+        
         self.statusTxt = statusText
         self.classTxt = classText
         self.professorTxt = professorText
         
-        super.init(timestamp: timeStamp)
+        super.init(timestamp: timeStamp, objectId: objectId, type: type)
     }
 }

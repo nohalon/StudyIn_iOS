@@ -13,6 +13,7 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
     @IBOutlet var fbLoginView: FBLoginView!
     let loginUser = User.sharedInstance
     var fbUser : FBGraphUser!
+    var userInfoFetched = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,82 +30,76 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
     // Facebook Delegate Methods
     func loginViewShowingLoggedInUser(loginView : FBLoginView!) {
         println("User Logged In")
-        saveUserToParse()
-        performSegueWithIdentifier("LoginToHomeSegue", sender: self)
     }
     
     func saveUserToParse() {
-//        var testObject = PFObject(className:"TestObject")
-//        testObject["foo"] = "testing this"
-//        testObject.saveInBackground()
-        
-        
-        // save user to parse
-        /*var userObject : PFObject = PFObject(className: "StudyInUser")
-        userObject.setObject(userID, forKey: "facebookID")
-        userObject.setObject(userName, forKey: "name")
-        userObject.setObject(facebookProfileUrl, forKey: "facebookImageURL")
-        
-        var userObj = PFObject(className:"StudyInUser")
-        userObj["facebookID"] = userID
-        userObj["name"] = userName
-        userObj["facebookImageURL"] = facebookProfileUrl
-        userObj.saveInBackgroundWithBlock {
-        (success: Bool, error: NSError!) -> Void in
-        if (success) {
-        // The object has been saved.
-        } else {
-        // There was a problem, check error.description
-        }
-        }
-        
-        var query = PFQuery(className: "GameScore")
-        query.getObjectInBackgroundWithId(gameScore.objectId) {
-        (scoreAgain: PFObject!, error: NSError!) -> Void in
-        if !error {
-        NSLog("%@", scoreAgain.objectForKey("playerName") as NSString)
-        } else {
-        NSLog("%@", error)
-        }
-        }*/
-        
         var testquery = PFQuery(className:"StudyInUser")
-        //query.whereKey("facebookID", equalTo: fbUser.objectID)
-        println("print this")
-        testquery.findObjectsInBackgroundWithBlock {(objects:[AnyObject]!, error: NSError!) in
-            if(error == nil){
-                println("here2")
-                // The find succeeded.
-                println("Successfully retrieved \(objects) scores.")
-                // Do something with the found objects
-                /*if let objects = objects as? [PFObject] {
-                    for object in objects {
-                        println(object.objectId)
-                    }
-                }*/
-            } else {
-                // Log details of the failure
-                println("Error: \(error) \(error.userInfo!)")
+        testquery.whereKey("facebookID", equalTo: fbUser.objectID)
+        var objects = testquery.findObjects()
+        
+        if (objects.count == 0) {
+            // save object
+            var userObject : PFObject = PFObject(className: "StudyInUser")
+            userObject.setObject(fbUser.objectID, forKey: "facebookID")
+            userObject.setObject(fbUser.name, forKey: "name")
+            userObject.setObject("http://graph.facebook.com/\(fbUser.objectID)/picture?type=large", forKey: "facebookImageURL")
+            userObject.saveInBackground()
+            loginUser.parseUserObject = userObject
+        }
+        else {
+            loginUser.parseUserObject = objects[0] as! PFObject
+        }
+    }
+    
+    func setActiveCheckIn() {
+        var checkIns = PFQuery(className: "CheckIn")
+        
+        checkIns.whereKey("user", equalTo: PFObject(withoutDataWithClassName: "StudyInUser", objectId: loginUser.parseUserObject.objectId))
+        
+        var objects = checkIns.findObjects()
+        
+        if (objects.count != 0) {
+            if let lastCheckIn: AnyObject = objects.last {
+                if (lastCheckIn["checkOut"] != nil) {
+                    loginUser.isCheckedIn = true
+                    loginUser.parseActiveCheckIn = lastCheckIn as! PFObject
+                }
+                else {
+                    loginUser.isCheckedIn = false
+                }
             }
+        }
+        else {
+            loginUser.isCheckedIn = false
         }
     }
     
     func loginViewFetchedUserInfo(loginView : FBLoginView!, user: FBGraphUser) {
-
-        let userName = user.name
-        var userID = user.objectID
-        var facebookProfileUrl = "http://graph.facebook.com/\(userID)/picture?type=large"
-        var userEmail = user.objectForKey("email") as! String
-        
-        self.loginUser.name = userName
-        self.loginUser.email = userEmail
-        self.loginUser.profilePicture = userID
-        
-        self.fbUser = user
-        
-        // check if the id exists
-        // if it does, get it
-        // if it doesn't, save a new one
+        if (!userInfoFetched) {
+            userInfoFetched = true
+            
+            let userName = user.name
+            var userID = user.objectID
+            var facebookProfileUrl = "http://graph.facebook.com/\(userID)/picture?type=large"
+            var userEmail = user.objectForKey("email") as! String
+            
+            self.loginUser.name = userName
+            self.loginUser.email = userEmail
+            self.loginUser.profilePicture = userID
+            
+            self.fbUser = user
+            
+            
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, UInt(0))) {
+                self.saveUserToParse()
+                self.setActiveCheckIn()
+            
+                dispatch_async(dispatch_get_main_queue()) {
+                }
+            };
+            
+            performSegueWithIdentifier("LoginToHomeSegue", sender: self)
+        }
     }
     
     func loginViewShowingLoggedOutUser(loginView : FBLoginView!) {

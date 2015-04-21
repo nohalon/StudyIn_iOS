@@ -8,21 +8,12 @@
 
 import Foundation
 
-enum PostType {
-    case CHECKIN
-    case CHECKOUT
-    
-    init () {
-        self = .CHECKIN
-    }
-}
-
 class UserCheckInOut : FeedObject {
-    var type : PostType
+    var type : FeedObjectType
     var silentPost : Bool
-    var location : String
+    var location : String! = ""
     
-    init(type : PostType, silentPost : Bool, location : String, timeStamp : NSDate) {
+    init(type : FeedObjectType, timeStamp : NSDate, objectId : String, silentPost : Bool, location : String) {
         self.type = type
         
         switch type {
@@ -30,9 +21,11 @@ class UserCheckInOut : FeedObject {
             self.location = location
         case .CHECKOUT:
             self.location = ""
+        case .STATUSUPDATE:
+            self.location = ""
         }
         
         self.silentPost = silentPost
-        super.init(timestamp: timeStamp)
+        super.init(timestamp: timeStamp, objectId: objectId, type: type)
     }
 }

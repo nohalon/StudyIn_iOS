@@ -22,5 +22,7 @@ class User {
     var userPosts =  [UserPost]()            // References the list of all the users "posts"
     var userCheckInOuts = [UserCheckInOut]() // References a list of all the users "check-ins" and "check-outs"
     
-    //var parseUserObject : PFObject = PFObject();
+    var userObjectId : String = ""
+    var parseUserObject : PFObject = PFObject(className: "StudyInUser")
+    var parseActiveCheckIn : PFObject = PFObject(className: "CheckIn")
 }

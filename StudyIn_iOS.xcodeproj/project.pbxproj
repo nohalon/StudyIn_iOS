@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2D3EE9DA1A784AE100C23B1E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3EE9D91A784AE100C23B1E /* AppDelegate.swift */; };
-		2D3EE9DC1A784AE100C23B1E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3EE9DB1A784AE100C23B1E /* HomeViewController.swift */; };
 		2D3EE9DF1A784AE100C23B1E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D3EE9DD1A784AE100C23B1E /* Main.storyboard */; };
 		2D3EE9E11A784AE100C23B1E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D3EE9E01A784AE100C23B1E /* Images.xcassets */; };
 		2D3EE9E41A784AE100C23B1E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D3EE9E21A784AE100C23B1E /* LaunchScreen.xib */; };
@@ -25,15 +24,15 @@
 		2D3EEA0E1A784E4A00C23B1E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D3EEA0D1A784E4A00C23B1E /* SystemConfiguration.framework */; };
 		2D3EEA101A784E5500C23B1E /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D3EEA0F1A784E5500C23B1E /* libz.dylib */; };
 		2D3EEA121A784E6300C23B1E /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D3EEA111A784E6300C23B1E /* libsqlite3.dylib */; };
-		2D51209B1A94597800072C63 /* StatusCheckOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D51209A1A94597800072C63 /* StatusCheckOutViewController.swift */; };
 		2D54D4CF1AA6BC7600A0849F /* UserPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D54D4CE1AA6BC7600A0849F /* UserPost.swift */; };
 		2D54D4D11AA6BCDA00A0849F /* UserCheckInOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D54D4D01AA6BCDA00A0849F /* UserCheckInOut.swift */; };
 		2D802C891AAFEDD2007CA05B /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D802C861AAFEDD2007CA05B /* ParseCrashReporting.framework */; };
 		2D802C8A1AAFEDD2007CA05B /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D802C871AAFEDD2007CA05B /* ParseFacebookUtils.framework */; };
 		2D802C8B1AAFEDD2007CA05B /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D802C881AAFEDD2007CA05B /* ParseUI.framework */; };
 		2D867C1D1AAF482800DDAAD6 /* UserCheckInOutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D867C1C1AAF482800DDAAD6 /* UserCheckInOutCell.swift */; };
-		2D867C1F1AAF98C400DDAAD6 /* FeedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D867C1E1AAF98C400DDAAD6 /* FeedObject.swift */; };
 		2D867C211AAFAD1C00DDAAD6 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D867C201AAFAD1C00DDAAD6 /* Utils.swift */; };
+		2DC3DBE51AB3FB6B0027EAE2 /* FeedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC3DBE41AB3FB6B0027EAE2 /* FeedObject.swift */; };
+		2DC3DBE71ABB247D0027EAE2 /* ParseDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC3DBE61ABB247D0027EAE2 /* ParseDAO.swift */; };
 		2DD06BDF1A8192920044D558 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DD06BDE1A8192920044D558 /* UIKit.framework */; };
 		2DD06BF41A81A7100044D558 /* Lato-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2DD06BE21A81A7100044D558 /* Lato-BlackItalic.ttf */; };
 		2DD06BF51A81A7100044D558 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2DD06BE31A81A7100044D558 /* Lato-Bold.ttf */; };
@@ -61,6 +60,7 @@
 		2DD06C121A829CF10044D558 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD06C111A829CF10044D558 /* LoginViewController.swift */; };
 		2DD06C141A82B0F20044D558 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD06C131A82B0F20044D558 /* User.swift */; };
 		2DD06C161A830F550044D558 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD06C151A830F550044D558 /* MainTabBarController.swift */; };
+		2DF1CB371AD35D7400A46282 /* NewsFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF1CB361AD35D7400A46282 /* NewsFeedViewController.swift */; };
 		2DF43A1B1AAEA819003F5321 /* UserPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF43A1A1AAEA819003F5321 /* UserPostCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -79,7 +79,6 @@
 		2D3EE9D41A784AE100C23B1E /* StudyIn_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudyIn_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D3EE9D81A784AE100C23B1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2D3EE9D91A784AE100C23B1E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2D3EE9DB1A784AE100C23B1E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		2D3EE9DE1A784AE100C23B1E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2D3EE9E01A784AE100C23B1E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		2D3EE9E31A784AE100C23B1E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -98,15 +97,15 @@
 		2D3EEA0F1A784E5500C23B1E /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		2D3EEA111A784E6300C23B1E /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		2D3EEA131A784FD800C23B1E /* StudyIn_iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "StudyIn_iOS-Bridging-Header.h"; sourceTree = "<group>"; };
-		2D51209A1A94597800072C63 /* StatusCheckOutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusCheckOutViewController.swift; sourceTree = "<group>"; };
 		2D54D4CE1AA6BC7600A0849F /* UserPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPost.swift; sourceTree = "<group>"; };
 		2D54D4D01AA6BCDA00A0849F /* UserCheckInOut.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCheckInOut.swift; sourceTree = "<group>"; };
 		2D802C861AAFEDD2007CA05B /* ParseCrashReporting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseCrashReporting.framework; path = "../../../Downloads/parse-library-1.6.2/ParseCrashReporting.framework"; sourceTree = "<group>"; };
 		2D802C871AAFEDD2007CA05B /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtils.framework; path = "../../../Downloads/parse-library-1.6.2/ParseFacebookUtils.framework"; sourceTree = "<group>"; };
 		2D802C881AAFEDD2007CA05B /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseUI.framework; path = "../../../Downloads/parse-library-1.6.2/ParseUI.framework"; sourceTree = "<group>"; };
 		2D867C1C1AAF482800DDAAD6 /* UserCheckInOutCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCheckInOutCell.swift; sourceTree = "<group>"; };
-		2D867C1E1AAF98C400DDAAD6 /* FeedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedObject.swift; sourceTree = "<group>"; };
 		2D867C201AAFAD1C00DDAAD6 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		2DC3DBE41AB3FB6B0027EAE2 /* FeedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedObject.swift; sourceTree = "<group>"; };
+		2DC3DBE61ABB247D0027EAE2 /* ParseDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseDAO.swift; sourceTree = "<group>"; };
 		2DD06BDE1A8192920044D558 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2DD06BE21A81A7100044D558 /* Lato-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-BlackItalic.ttf"; path = "../../../Downloads/lato (1)/Lato-BlackItalic.ttf"; sourceTree = "<group>"; };
 		2DD06BE31A81A7100044D558 /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Bold.ttf"; path = "../../../Downloads/lato (1)/Lato-Bold.ttf"; sourceTree = "<group>"; };
@@ -135,6 +134,7 @@
 		2DD06C131A82B0F20044D558 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		2DD06C151A830F550044D558 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		2DEC3EF79EEBDE8DCA1CB619 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		2DF1CB361AD35D7400A46282 /* NewsFeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsFeedViewController.swift; sourceTree = "<group>"; };
 		2DF43A1A1AAEA819003F5321 /* UserPostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPostCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -206,10 +206,11 @@
 				2D3EE9E21A784AE100C23B1E /* LaunchScreen.xib */,
 				2D3EEA131A784FD800C23B1E /* StudyIn_iOS-Bridging-Header.h */,
 				2DD06C131A82B0F20044D558 /* User.swift */,
+				2DC3DBE41AB3FB6B0027EAE2 /* FeedObject.swift */,
 				2D54D4CE1AA6BC7600A0849F /* UserPost.swift */,
 				2D54D4D01AA6BCDA00A0849F /* UserCheckInOut.swift */,
-				2D867C1E1AAF98C400DDAAD6 /* FeedObject.swift */,
 				2D867C201AAFAD1C00DDAAD6 /* Utils.swift */,
+				2DC3DBE61ABB247D0027EAE2 /* ParseDAO.swift */,
 			);
 			path = StudyIn_iOS;
 			sourceTree = "<group>";
@@ -275,14 +276,13 @@
 		2DD06C081A81F5D00044D558 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				2D3EE9DB1A784AE100C23B1E /* HomeViewController.swift */,
 				2DD06C061A81F5B70044D558 /* StatusCheckInViewController.swift */,
-				2D51209A1A94597800072C63 /* StatusCheckOutViewController.swift */,
 				2DD06C091A81F5F20044D558 /* GroupsViewController.swift */,
 				2DD06C0B1A81F5FF0044D558 /* ProfileViewController.swift */,
 				2DD06C0D1A81F6190044D558 /* MessagesViewController.swift */,
 				2DD06C111A829CF10044D558 /* LoginViewController.swift */,
 				2DD06C151A830F550044D558 /* MainTabBarController.swift */,
+				2DF1CB361AD35D7400A46282 /* NewsFeedViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -425,17 +425,17 @@
 			files = (
 				2DD06C121A829CF10044D558 /* LoginViewController.swift in Sources */,
 				2DD06C0E1A81F6190044D558 /* MessagesViewController.swift in Sources */,
-				2D867C1F1AAF98C400DDAAD6 /* FeedObject.swift in Sources */,
 				2DD06C161A830F550044D558 /* MainTabBarController.swift in Sources */,
+				2DF1CB371AD35D7400A46282 /* NewsFeedViewController.swift in Sources */,
 				2DD06C0A1A81F5F20044D558 /* GroupsViewController.swift in Sources */,
-				2D3EE9DC1A784AE100C23B1E /* HomeViewController.swift in Sources */,
 				2D54D4CF1AA6BC7600A0849F /* UserPost.swift in Sources */,
+				2DC3DBE51AB3FB6B0027EAE2 /* FeedObject.swift in Sources */,
 				2D867C211AAFAD1C00DDAAD6 /* Utils.swift in Sources */,
+				2DC3DBE71ABB247D0027EAE2 /* ParseDAO.swift in Sources */,
 				2DD06C141A82B0F20044D558 /* User.swift in Sources */,
 				2D54D4D11AA6BCDA00A0849F /* UserCheckInOut.swift in Sources */,
 				2DF43A1B1AAEA819003F5321 /* UserPostCell.swift in Sources */,
 				2DD06C0C1A81F5FF0044D558 /* ProfileViewController.swift in Sources */,
-				2D51209B1A94597800072C63 /* StatusCheckOutViewController.swift in Sources */,
 				2D867C1D1AAF482800DDAAD6 /* UserCheckInOutCell.swift in Sources */,
 				2D3EE9DA1A784AE100C23B1E /* AppDelegate.swift in Sources */,
 				2DD06C071A81F5B70044D558 /* StatusCheckInViewController.swift in Sources */,

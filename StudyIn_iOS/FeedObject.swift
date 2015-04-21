@@ -8,10 +8,24 @@
 
 import Foundation
 
+enum FeedObjectType {
+    case CHECKIN
+    case CHECKOUT
+    case STATUSUPDATE
+    
+    init () {
+        self = .CHECKIN
+    }
+}
+
 class FeedObject {
     var timestamp : NSDate
+    var objectType : FeedObjectType
+    var objectId : String
     
-    init(timestamp : NSDate) {
+    init(timestamp : NSDate, objectId : String, type : FeedObjectType) {
         self.timestamp = timestamp
+        self.objectId = objectId
+        self.objectType = type
     }
 }
