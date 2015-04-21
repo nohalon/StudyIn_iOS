@@ -120,10 +120,8 @@ class StatusCheckInViewController: UITableViewController {
         return privateCheckIn
     }
     
-    // Exit the status/check in page
-    @IBAction func exitPageAction(sender: AnyObject) {
-        self.view.endEditing(false)
-        println("exit clicked")
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        self.view.endEditing(true)
     }
     
     

@@ -146,6 +146,16 @@ class ParseDAO {
         checkOutObject["integerId"] = result + 1
         checkOutObject.saveInBackground()
         
+        var checkins = PFQuery(className: "CheckIn")
+         checkins.whereKey("objectId", equalTo: user.parseActiveCheckIn.objectId)
+        
+        checkins.findObjectsInBackgroundWithBlock({(objects:[AnyObject]!, error: NSError!) in
+            var result = objects[0] as! PFObject
+            result["checkOut"] = checkOutObject
+            result.save()
+        })
+        
+        
         saveFeedItem("checkOut", saveObject: checkOutObject)
     }
 }

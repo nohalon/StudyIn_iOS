@@ -30,10 +30,10 @@ class NewsFeedViewController: PFQueryTableViewController {
     var loadError = false
     var shouldLoadFromNetwork = true
     
-    override init!(style: UITableViewStyle, className: String!) {
+    override init(style: UITableViewStyle, className: String!) {
         super.init(style: style, className: className)
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -51,17 +51,27 @@ class NewsFeedViewController: PFQueryTableViewController {
     }
     
     // Define the query that will provide the data for the table view
-    override func queryForTable() -> PFQuery! {
+    override func queryForTable() -> PFQuery {
         var query = PFQuery(className: "FeedItem")
+        
         query.orderByDescending("createdAt")
+        query.includeKey("user")
+        query.includeKey("checkOut")
+        query.includeKey("checkOut.location")
+        query.includeKey("checkIn")
+        query.includeKey("checkIn.location")
+        query.includeKey("statusUpdate")
+        query.includeKey("statusUpdate.course")
+        query.includeKey("statusUpdate.professor")
+        
         return query
     }
     
     override func objectAtIndexPath(indexPath: NSIndexPath!) -> PFObject! {
         var obj : PFObject? = nil
         
-        if (indexPath.row < self.objects.count) {
-            obj = self.objects[indexPath.row] as? PFObject
+        if (indexPath.row < self.objects!.count) {
+            obj = self.objects![indexPath.row] as? PFObject
         }
         
         return obj
@@ -74,27 +84,20 @@ class NewsFeedViewController: PFQueryTableViewController {
         testQuery.whereKey("objectId", equalTo: objectID)
         let objs = testQuery.findObjects()
         
-        let newObj = objs[0] as! PFObject
+        let newObj = objs![0] as! PFObject
         return newObj
     }
     
-    func getUserInfo(object: PFObject) -> FeedUser {
+    func getUserInfo(myUser: PFObject) -> FeedUser {
         var myFeedUser : FeedUser = FeedUser()
-        var myUser : PFObject = object["user"] as! PFObject
         var photo = ""
-        var query = PFQuery(className: "StudyInUser")
-        query.whereKey("objectId", equalTo: myUser.objectId)
         
-        let objs = query.findObjects()
-        if (objs.count != 0) {
-            var tempUser = objs[0] as! PFObject
-            myFeedUser.facebookID = tempUser["facebookID"] as! String
-            myFeedUser.name = tempUser["name"] as! String
-        }
+        myFeedUser.facebookID = myUser["facebookID"] as! String
+        myFeedUser.name = myUser["name"] as! String
         
         return myFeedUser
     }
-
+    
     override func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!, object: PFObject!) -> PFTableViewCell! {
         var status = object.valueForKey("statusUpdate") as? PFObject
         var checkin = object.valueForKey("checkIn") as? PFObject
@@ -103,19 +106,17 @@ class NewsFeedViewController: PFQueryTableViewController {
         
         if (status != nil) {
             // Create a status update cell.
-            let statusObj = queryDB("StatusUpdate", object: status)
-            feedUser = getUserInfo(statusObj)
+            let statusObj = status!
+            feedUser = getUserInfo(object.valueForKey("user") as! PFObject)
             var statusText = statusObj.valueForKey("statusText") as! String
-
+            
             var courseText = ""
             if let course = statusObj.valueForKey("course") as? PFObject {
-                let courseObj = queryDB("Course", object: course)
-                courseText = courseObj.valueForKey("courseName") as! String
+                courseText = course.valueForKey("courseName") as! String
             }
             
             var profText = ""
             if let prof = statusObj.valueForKey("professor") as? PFObject {
-                let courseObj = queryDB("Professor", object: prof)
                 profText = prof.valueForKey("professorName") as! String
             }
             
@@ -125,12 +126,11 @@ class NewsFeedViewController: PFQueryTableViewController {
         }
         else if (checkin != nil) {
             // Create a check-in cell.
-            let checkInObj = queryDB("CheckIn", object: checkin)
-            feedUser = getUserInfo(checkInObj)
+            let checkInObj = checkin!
+            feedUser = getUserInfo(object.valueForKey("user") as! PFObject)
             var locText = "location test"
             if let location = checkInObj.valueForKey("location") as? PFObject {
-                let locObj = queryDB("Location", object: location)
-                locText = locObj.valueForKey("name") as! String
+                locText = location.valueForKey("name") as! String
             }
             
             let cell = tableView.dequeueReusableCellWithIdentifier("checkInOutCell") as! UserCheckInOutCell
@@ -139,8 +139,8 @@ class NewsFeedViewController: PFQueryTableViewController {
             return cell;
         }
         else {
-            let checkOutObj = queryDB("CheckOut", object: checkout)
-            feedUser = getUserInfo(checkOutObj)
+            let checkOutObj = checkout!
+            feedUser = getUserInfo(object.valueForKey("user") as! PFObject)
             // Create a check-out cell.
             let cell = tableView.dequeueReusableCellWithIdentifier("checkInOutCell") as! UserCheckInOutCell
             cell.setUpCell(feedUser.name, type: FeedObjectType.CHECKOUT, location: "", photoURL : feedUser.facebookID)
@@ -150,12 +150,12 @@ class NewsFeedViewController: PFQueryTableViewController {
     }
     
     @IBAction func unwindToHome(segue:UIStoryboardSegue) {
-        
+        self.loadObjects()
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "UnwindToHomeSegue" {
-            self.tableView.reloadData()
+            self.loadObjects()
         }
     }
 }

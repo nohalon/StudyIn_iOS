@@ -53,14 +53,15 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
     
     func setActiveCheckIn() {
         var checkIns = PFQuery(className: "CheckIn")
-        
+        checkIns.selectKeys(["checkOut", "user"])
         checkIns.whereKey("user", equalTo: PFObject(withoutDataWithClassName: "StudyInUser", objectId: loginUser.parseUserObject.objectId))
-        
         var objects = checkIns.findObjects()
         
         if (objects.count != 0) {
-            if let lastCheckIn: AnyObject = objects.last {
-                if (lastCheckIn["checkOut"] != nil) {
+            
+            if let lastCheckIn: AnyObject = objects.first {
+                var lastCheckOut = lastCheckIn["checkOut"] as? PFObject
+                if (lastCheckOut == nil) {
                     loginUser.isCheckedIn = true
                     loginUser.parseActiveCheckIn = lastCheckIn as! PFObject
                 }
