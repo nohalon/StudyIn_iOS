@@ -77,7 +77,7 @@ class UserPostCell : PFTableViewCell {
         self.fbProfPic.layer.cornerRadius = self.fbProfPic.frame.size.width / 2
         self.fbProfPic.clipsToBounds = true
         
-        self.fbProfPic.layer.borderWidth = 2.0
+        self.fbProfPic.layer.borderWidth = 0.85
         
         var myColor : UIColor = Utils.uicolorFromHex(0x62CDFF)
         self.fbProfPic.layer.borderColor = myColor.CGColor

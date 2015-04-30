@@ -6,3 +6,4 @@
 #import <Bolts/Bolts.h>
 #import <ParseUI/ParseUI.h>
 #import <FacebookSDK/FacebookSDK.h>
+#import "JSQMessages.h"

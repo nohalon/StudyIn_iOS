@@ -41,6 +41,7 @@ class NewsFeedViewController: PFQueryTableViewController {
         self.tableView.rowHeight = UITableViewAutomaticDimension
     }
     
+    
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
@@ -103,6 +104,7 @@ class NewsFeedViewController: PFQueryTableViewController {
         var checkin = object.valueForKey("checkIn") as? PFObject
         var checkout = object.valueForKey("checkOut") as? PFObject
         var feedUser = FeedUser()
+        
         
         if (status != nil) {
             // Create a status update cell.

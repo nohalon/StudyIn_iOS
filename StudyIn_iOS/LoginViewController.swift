@@ -27,6 +27,8 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+
+    
     // Facebook Delegate Methods
     func loginViewShowingLoggedInUser(loginView : FBLoginView!) {
         println("User Logged In")
@@ -98,9 +100,9 @@ class LoginViewController: UIViewController, FBLoginViewDelegate {
                 dispatch_async(dispatch_get_main_queue()) {
                 }
             };
-            
-            performSegueWithIdentifier("LoginToHomeSegue", sender: self)
         }
+        performSegueWithIdentifier("LoginToHomeSegue", sender: self)
+
     }
     
     func loginViewShowingLoggedOutUser(loginView : FBLoginView!) {

@@ -52,6 +52,7 @@ class ParseDAO {
         saveFeedItem("statusUpdate", saveObject: postObject)
     }
     
+    // Saves a FeedItem to the Parse DB.
     func saveFeedItem(fieldName: String, saveObject: PFObject) {
         var feedItemObject = PFObject(className: "FeedItem")
         var feedCount : Int! = PFCloud.callFunction("feedItemCount", withParameters: [:]) as! Int
@@ -154,7 +155,6 @@ class ParseDAO {
             result["checkOut"] = checkOutObject
             result.save()
         })
-        
         
         saveFeedItem("checkOut", saveObject: checkOutObject)
     }
