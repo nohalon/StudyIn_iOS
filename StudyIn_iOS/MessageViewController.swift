@@ -105,15 +105,16 @@ class MessageViewController : JSQMessagesViewController {
             if lastMessage != nil {
                 query.whereKey("createdAt", greaterThan: lastMessage?.date)
             }
-            query.orderByAscending("createdAt")
+            
+            // Gets the most recent items in reverse order
+            query.orderByDescending("createdAt")
             query.limit = 5
             
             query.findObjectsInBackgroundWithBlock({
                 [unowned self] (objects: [AnyObject]!, error: NSError!) -> Void in
                 if error == nil {
-                    //if (object.count > 0) {
+                    
                     self.automaticallyScrollsToMostRecentMessage = false
-                    //}
                     for object in objects {
                         self.addMessage(object as! PFObject)
                     }
@@ -149,7 +150,7 @@ class MessageViewController : JSQMessagesViewController {
             var user = MsgUser(id: fbId, name: userName, image: userImage!)
             self.users.append(user)
         }
-        self.messages.append(message)
+        self.messages.insert(message, atIndex: 0)
     }
     
     func sendMessage(text: String) {
