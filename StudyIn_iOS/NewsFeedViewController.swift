@@ -23,7 +23,6 @@ class NewsFeedViewController: PFQueryTableViewController {
     @IBOutlet var newsFeedTable: UITableView!
     let user = User.sharedInstance
     let parseDao : ParseDAO = ParseDAO()
-    var feedObjects = Array<FeedObject>()
     
     // Variables for loading
     var loadingData = true

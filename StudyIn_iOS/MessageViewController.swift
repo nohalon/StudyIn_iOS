@@ -26,6 +26,7 @@ class MessageViewController : JSQMessagesViewController {
     var groupId: String!
     var otherUserName: String!
     var convoObject : PFObject?
+    var refreshControl : UIRefreshControl!
 
     var timer: NSTimer?
     var isLoading: Bool!
@@ -60,11 +61,11 @@ class MessageViewController : JSQMessagesViewController {
         super.senderId = self.user.parseUserObject["facebookID"] as! String
         
         // Set up refresh control
-        var refreshControl = UIRefreshControl()
-        //refreshControl.addTarget(self, action: "pullMessages:", forControlEvents: UIControlEvents.ValueChanged)
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.addTarget(self, action: "pullMessages:", forControlEvents: UIControlEvents.ValueChanged)
         self.collectionView.addSubview(refreshControl)
         
-        self.loadMessages()
+        self.loadMessages(false)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -75,7 +76,7 @@ class MessageViewController : JSQMessagesViewController {
         super.viewDidAppear(animated)
         
         self.collectionView.collectionViewLayout.springinessEnabled = false
-        self.timer = NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: Selector("loadMessages"), userInfo: nil, repeats: true)
+        self.timer = NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: Selector("callLoadMessages"), userInfo: nil, repeats: true)
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -92,48 +93,67 @@ class MessageViewController : JSQMessagesViewController {
     
     func pullMessages(sender: UIRefreshControl) {
         println("pulling messgaes")
+        self.loadMessages(true)
+        self.refreshControl.endRefreshing()
     }
     
-    func loadMessages() {
-        if self.isLoading == false {
-            self.isLoading = true
-            var lastMessage = self.messages.last
-            
-            var query = PFQuery(className: "Message")
-            query.whereKey("groupId", equalTo: self.groupId)
-            
-            if lastMessage != nil {
-                query.whereKey("createdAt", greaterThan: lastMessage?.date)
-            }
-            
-            // Gets the most recent items in reverse order
-            query.orderByDescending("createdAt")
-            query.limit = 5
-            
-            query.findObjectsInBackgroundWithBlock({
-                [unowned self] (objects: [AnyObject]!, error: NSError!) -> Void in
-                if error == nil {
-                    
-                    self.automaticallyScrollsToMostRecentMessage = false
-                    for object in objects {
-                        self.addMessage(object as! PFObject)
+    func callLoadMessages() {
+        loadMessages(false)
+    }
+    
+    func loadMessages(var isRefreshing : Bool) {
+        if (isRefreshing && self.messages.count > 0) || !isRefreshing {
+            if self.isLoading == false {
+                self.isLoading = true
+                var lastMessage = self.messages.last
+                
+                var query = PFQuery(className: "Message")
+                query.whereKey("groupId", equalTo: self.groupId)
+                //query.whereKey("conversation", equalTo: convoObject)
+                
+                if isRefreshing {
+                    if messages.first != nil {
+                        query.whereKey("createdAt", lessThan: messages.first?.date)
                     }
-                    
-                    if self.messages.count != 0 {
-                        self.finishReceivingMessage()
+                }
+                else {
+                    if lastMessage != nil {
+                        query.whereKey("createdAt", greaterThan: lastMessage?.date)
                     }
-                    
-                    // Scroll to bottom if a new message has been recieved
-                    if objects.count > 0 {
-                        self.scrollToBottomAnimated(true)
-                    }
-                    
-                } else {
-                    println("Error retrieving messages")
                 }
                 
-                self.isLoading = false
-                })
+                // Gets the most recent items in reverse order
+                query.orderByDescending("createdAt")
+                query.limit = 10
+                
+                query.findObjectsInBackgroundWithBlock({
+                    [unowned self] (objects: [AnyObject]!, error: NSError!) -> Void in
+                    if error == nil {
+                        
+                        self.automaticallyScrollsToMostRecentMessage = false
+                        for object in objects {
+                            self.addMessage(object as! PFObject)
+                        }
+                        
+                        if self.messages.count != 0 {
+                            self.finishReceivingMessage()
+                        }
+                        
+                        // Scroll to bottom if a new message has been recieved
+                        if objects.count > 0 {
+                            self.scrollToBottomAnimated(true)
+                        }
+                        
+                    } else {
+                        println("Error retrieving messages")
+                    }
+                    
+                    /*if isRefreshing {
+                        self.refreshControl.endRefreshing()
+                    }*/
+                    self.isLoading = false
+                    })
+            }
         }
     }
     
@@ -148,7 +168,7 @@ class MessageViewController : JSQMessagesViewController {
         if let data = NSData(contentsOfURL: imageUrl!) {
             var userImage = UIImage(data: data)
             var user = MsgUser(id: fbId, name: userName, image: userImage!)
-            self.users.append(user)
+            self.users.insert(user, atIndex: 0)
         }
         self.messages.insert(message, atIndex: 0)
     }
@@ -159,6 +179,8 @@ class MessageViewController : JSQMessagesViewController {
         object["user"] = self.user.parseUserObject
         object["groupId"] = self.groupId
         object["text"] = text
+        var msgCount : Int! = PFCloud.callFunction("messageCount", withParameters: [:]) as! Int
+        object["integerID"] = (msgCount + 1)
         
         object.saveInBackgroundWithBlock {
             [unowned self] (success: Bool, error: NSError!) -> Void in
@@ -169,7 +191,7 @@ class MessageViewController : JSQMessagesViewController {
                 self.convoObject!["lastMessage"] = object
                 self.convoObject!.saveInBackground()
                 
-                self.loadMessages()
+                self.loadMessages(false)
             } else {
                 println("Error sending message")
             }

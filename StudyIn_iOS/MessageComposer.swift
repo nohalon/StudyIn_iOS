@@ -53,6 +53,7 @@ class MessageComposer : UITableViewController, UITableViewDataSource {
     }
     
     func backButtonAction(sender: UIBarButtonItem) {
+        self.tabBarController?.tabBar.hidden = false
         self.navigationController?.popToRootViewControllerAnimated(false)
     }
     

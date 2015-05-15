@@ -64,16 +64,13 @@ class StatusCheckInViewController: UITableViewController {
         
         if (locationLabel != "Name your location") {
             user.isCheckedIn = true;
-            //var checkIn = UserCheckInOut(type : .CHECKIN, silentPost : isPrivateCheckIn(), location : locationLabel, timeStamp : currentTime);
-            //user.userCheckInOuts.append(checkIn);
-            
             var loc = parseDao.getLocationParseObj(locationLabel)
             parseDao.saveCheckInToParse(loc)
             
             self.performSegueWithIdentifier("UnwindToHomeSegue", sender : self)
         }
         else {
-            showAlertViewWithMessage("Your New Check In", message : "Hey there, we ask that you please specify your location when you want to check in, thanks!")
+            Utils.showAlertViewWithMessage(self, title: "Your New Check In", message : "Hey there, we ask that you please specify your location when you want to check in, thanks!")
         }
     }
     
@@ -83,25 +80,23 @@ class StatusCheckInViewController: UITableViewController {
         var locationLabel = self.locationLabel.text!
         
         if (locationLabel != "Name your location") {
-            //var checkOut = UserCheckInOut(type : .CHECKOUT, silentPost : isPrivateCheckIn(), location : locationLabel, timeStamp : currentTime);
-            //user.userCheckInOuts.append(checkOut);
             
             parseDao.saveCheckOutToParse()
             user.isCheckedIn = false;
             self.performSegueWithIdentifier("UnwindToHomeSegue", sender : self)
         }
         else {
-            showAlertViewWithMessage("Your New Check Out", message : "Hey there, we ask that you please specify your location when you want to check out, thanks!")
+            Utils.showAlertViewWithMessage(self, title: "Your New Check Out", message : "Hey there, we ask that you please specify your location when you want to check out, thanks!")
         }
     }
     
     // Shows an alert view with a given title and message
-    func showAlertViewWithMessage(title : String, message : String) {
+    func showAlertViewWithMessage(sender: UIViewController, title : String, message : String) {
         let alertController = UIAlertController(title: title, message:
             message, preferredStyle: UIAlertControllerStyle.Alert)
         alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
         
-        self.presentViewController(alertController, animated: true, completion: nil)
+        sender.presentViewController(alertController, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {

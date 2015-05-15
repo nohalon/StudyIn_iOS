@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D3E07CD1B06B07700CBACE7 /* GroupFeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3E07CC1B06B07700CBACE7 /* GroupFeedTableViewController.swift */; };
 		2D3EE9DA1A784AE100C23B1E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3EE9D91A784AE100C23B1E /* AppDelegate.swift */; };
 		2D3EE9DF1A784AE100C23B1E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D3EE9DD1A784AE100C23B1E /* Main.storyboard */; };
 		2D3EE9E11A784AE100C23B1E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D3EE9E01A784AE100C23B1E /* Images.xcassets */; };
@@ -26,6 +27,7 @@
 		2D54D4D11AA6BCDA00A0849F /* UserCheckInOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D54D4D01AA6BCDA00A0849F /* UserCheckInOut.swift */; };
 		2D867C1D1AAF482800DDAAD6 /* UserCheckInOutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D867C1C1AAF482800DDAAD6 /* UserCheckInOutCell.swift */; };
 		2D867C211AAFAD1C00DDAAD6 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D867C201AAFAD1C00DDAAD6 /* Utils.swift */; };
+		2D8735571AFAA6AC005DD30F /* AddGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8735561AFAA6AC005DD30F /* AddGroup.swift */; };
 		2DC3DBE51AB3FB6B0027EAE2 /* FeedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC3DBE41AB3FB6B0027EAE2 /* FeedObject.swift */; };
 		2DC3DBE71ABB247D0027EAE2 /* ParseDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC3DBE61ABB247D0027EAE2 /* ParseDAO.swift */; };
 		2DD06BDF1A8192920044D558 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DD06BDE1A8192920044D558 /* UIKit.framework */; };
@@ -48,7 +50,6 @@
 		2DD06C041A81A7100044D558 /* Lato-Heavy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2DD06BF21A81A7100044D558 /* Lato-Heavy.ttf */; };
 		2DD06C051A81A7100044D558 /* Lato-HeavyItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2DD06BF31A81A7100044D558 /* Lato-HeavyItalic.ttf */; };
 		2DD06C071A81F5B70044D558 /* StatusCheckInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD06C061A81F5B70044D558 /* StatusCheckInViewController.swift */; };
-		2DD06C0A1A81F5F20044D558 /* GroupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD06C091A81F5F20044D558 /* GroupsViewController.swift */; };
 		2DD06C0C1A81F5FF0044D558 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD06C0B1A81F5FF0044D558 /* ProfileViewController.swift */; };
 		2DD06C121A829CF10044D558 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD06C111A829CF10044D558 /* LoginViewController.swift */; };
 		2DD06C141A82B0F20044D558 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD06C131A82B0F20044D558 /* User.swift */; };
@@ -126,6 +127,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2D3E07CC1B06B07700CBACE7 /* GroupFeedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupFeedTableViewController.swift; sourceTree = "<group>"; };
 		2D3EE9D41A784AE100C23B1E /* StudyIn_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudyIn_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D3EE9D81A784AE100C23B1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2D3EE9D91A784AE100C23B1E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 		2D54D4D01AA6BCDA00A0849F /* UserCheckInOut.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCheckInOut.swift; sourceTree = "<group>"; };
 		2D867C1C1AAF482800DDAAD6 /* UserCheckInOutCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCheckInOutCell.swift; sourceTree = "<group>"; };
 		2D867C201AAFAD1C00DDAAD6 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		2D8735561AFAA6AC005DD30F /* AddGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddGroup.swift; sourceTree = "<group>"; };
 		2DC3DBE41AB3FB6B0027EAE2 /* FeedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedObject.swift; sourceTree = "<group>"; };
 		2DC3DBE61ABB247D0027EAE2 /* ParseDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseDAO.swift; sourceTree = "<group>"; };
 		2DD06BDE1A8192920044D558 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -171,7 +174,6 @@
 		2DD06BF21A81A7100044D558 /* Lato-Heavy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Heavy.ttf"; path = "../../../../Downloads/lato (1)/Lato-Heavy.ttf"; sourceTree = "<group>"; };
 		2DD06BF31A81A7100044D558 /* Lato-HeavyItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-HeavyItalic.ttf"; path = "../../../../Downloads/lato (1)/Lato-HeavyItalic.ttf"; sourceTree = "<group>"; };
 		2DD06C061A81F5B70044D558 /* StatusCheckInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusCheckInViewController.swift; sourceTree = "<group>"; };
-		2DD06C091A81F5F20044D558 /* GroupsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupsViewController.swift; sourceTree = "<group>"; };
 		2DD06C0B1A81F5FF0044D558 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		2DD06C111A829CF10044D558 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		2DD06C131A82B0F20044D558 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -432,11 +434,12 @@
 				2DED52EF1AF2C59700D9981C /* MessageComposer.swift */,
 				2DED52F01AF2C59700D9981C /* MessageViewController.swift */,
 				2DD06C061A81F5B70044D558 /* StatusCheckInViewController.swift */,
-				2DD06C091A81F5F20044D558 /* GroupsViewController.swift */,
 				2DD06C0B1A81F5FF0044D558 /* ProfileViewController.swift */,
 				2DD06C111A829CF10044D558 /* LoginViewController.swift */,
 				2DD06C151A830F550044D558 /* MainTabBarController.swift */,
 				2DF1CB361AD35D7400A46282 /* NewsFeedViewController.swift */,
+				2D8735561AFAA6AC005DD30F /* AddGroup.swift */,
+				2D3E07CC1B06B07700CBACE7 /* GroupFeedTableViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -670,6 +673,7 @@
 					};
 					2D3EE9E81A784AE100C23B1E = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = PY9957M84G;
 						TestTargetID = 2D3EE9D31A784AE100C23B1E;
 					};
 				};
@@ -762,13 +766,13 @@
 				2DED52F51AF2C5CD00D9981C /* ConversationCell.swift in Sources */,
 				2DED53701AF2CC2500D9981C /* JSQLocationMediaItem.m in Sources */,
 				2DED53481AF2CBE500D9981C /* JSQMessagesTimestampFormatter.m in Sources */,
-				2DD06C0A1A81F5F20044D558 /* GroupsViewController.swift in Sources */,
 				2DED53341AF2CBCF00D9981C /* JSQSystemSoundPlayer+JSQMessages.m in Sources */,
 				2D54D4CF1AA6BC7600A0849F /* UserPost.swift in Sources */,
 				2DED53951AF2CC3600D9981C /* JSQMessagesCollectionView.m in Sources */,
 				2DED539C1AF2CC3600D9981C /* JSQMessagesInputToolbar.m in Sources */,
 				2DC3DBE51AB3FB6B0027EAE2 /* FeedObject.swift in Sources */,
 				2DED53471AF2CBE500D9981C /* JSQMessagesMediaViewBubbleImageMasker.m in Sources */,
+				2D3E07CD1B06B07700CBACE7 /* GroupFeedTableViewController.swift in Sources */,
 				2D867C211AAFAD1C00DDAAD6 /* Utils.swift in Sources */,
 				2DED53461AF2CBE500D9981C /* JSQMessagesBubbleImageFactory.m in Sources */,
 				2DED539D1AF2CC3600D9981C /* JSQMessagesLabel.m in Sources */,
@@ -786,6 +790,7 @@
 				2D54D4D11AA6BCDA00A0849F /* UserCheckInOut.swift in Sources */,
 				2DED53591AF2CC1700D9981C /* JSQMessagesCollectionViewFlowLayout.m in Sources */,
 				2DED53A11AF2CC3600D9981C /* JSQMessagesToolbarContentView.m in Sources */,
+				2D8735571AFAA6AC005DD30F /* AddGroup.swift in Sources */,
 				2DED535B1AF2CC1700D9981C /* JSQMessagesCollectionViewLayoutAttributes.m in Sources */,
 				2DF43A1B1AAEA819003F5321 /* UserPostCell.swift in Sources */,
 				2DD06C0C1A81F5FF0044D558 /* ProfileViewController.swift in Sources */,
@@ -857,7 +862,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: GEORGE ALON (WYB86Y3HTX)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: GEORGE ALON (WYB86Y3HTX)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -901,7 +907,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: GEORGE ALON (WYB86Y3HTX)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: GEORGE ALON (WYB86Y3HTX)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -927,8 +934,8 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: GEORGE ALON (WYB86Y3HTX)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: GEORGE ALON (WYB86Y3HTX)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/nohaalon/Downloads/parse-library-1.6.2",
@@ -953,8 +960,8 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: GEORGE ALON (WYB86Y3HTX)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: GEORGE ALON (WYB86Y3HTX)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/nohaalon/Downloads/parse-library-1.6.2",
@@ -976,6 +983,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -987,6 +996,7 @@
 				INFOPLIST_FILE = StudyIn_iOSTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StudyIn_iOS.app/StudyIn_iOS";
 			};
 			name = Debug;
@@ -995,6 +1005,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -1002,6 +1014,7 @@
 				INFOPLIST_FILE = StudyIn_iOSTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StudyIn_iOS.app/StudyIn_iOS";
 			};
 			name = Release;
