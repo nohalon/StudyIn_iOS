@@ -18,6 +18,7 @@ class GroupsTableViewController: PFQueryTableViewController {
     @IBOutlet var groupsTable: UITableView!
     var groups : [PFObject]!
     let user = User.sharedInstance
+    var selectedGroup : PFObject?
     
     override init(style: UITableViewStyle, className: String!) {
         super.init(style: style, className: className)
@@ -39,18 +40,9 @@ class GroupsTableViewController: PFQueryTableViewController {
     // Define the query that will provide the data for the table view
     override func queryForTable() -> PFQuery {
         var groupsRelation = user.parseUserObject.relationForKey("groups") as PFRelation
-        
         var query = groupsRelation.query()
         
         query.orderByDescending("createdAt")
-        query.includeKey("user")
-        query.includeKey("checkOut")
-        query.includeKey("checkOut.location")
-        query.includeKey("checkIn")
-        query.includeKey("checkIn.location")
-        query.includeKey("statusUpdate")
-        query.includeKey("statusUpdate.course")
-        query.includeKey("statusUpdate.professor")
         
         return query
     }
@@ -68,7 +60,6 @@ class GroupsTableViewController: PFQueryTableViewController {
     override func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!, object: PFObject!) -> PFTableViewCell! {
         var cell = tableView.dequeueReusableCellWithIdentifier("groupCell", forIndexPath: indexPath) as! GroupCell
         var groupName = object["name"] as! String
-        //let group = groups[indexPath.row]
         cell.groupName.text = groupName
         
         return cell
@@ -76,12 +67,16 @@ class GroupsTableViewController: PFQueryTableViewController {
     }
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        let group = groups[indexPath.row] as PFObject
+        let group = self.objects[indexPath.row] as! PFObject
         
+        //groupsTable.deleteRowsAtIndexPaths(NSArray(object: indexPath) as [AnyObject], withRowAnimation: .Fade)
         Utils.deleteGroupItem(user.parseUserObject, group: group) // remove from parse
-        
-        groups.removeAtIndex(indexPath.row)
-        groupsTable.deleteRowsAtIndexPaths(NSArray(object: indexPath) as [AnyObject], withRowAnimation: .Fade)
+
+        self.loadObjects()
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        performSegueWithIdentifier("toGroupSegue", sender: self)
     }
 
 
@@ -98,128 +93,20 @@ class GroupsTableViewController: PFQueryTableViewController {
         if (segue.identifier == "unwindToGroupsTable") {
             self.loadObjects()
         }
+        else if (segue.identifier == "toGroupSegue") {
+            
+            let path = self.tableView.indexPathForSelectedRow()!
+            self.selectedGroup = self.objects[path.row] as? PFObject
+            
+            var groupViewController = segue.destinationViewController as! GroupContentViewController
+            if let theSelectedGroup = self.selectedGroup {
+                groupViewController.group = theSelectedGroup
+            }
+        }
     }
     
     @IBAction func unwindToGroupsTable(segue:UIStoryboardSegue) {
-        
+        self.loadObjects()
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
 }
-
-/*extension GroupsTableViewController : UITableViewDataSource {
-
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("groupCell", forIndexPath: indexPath) as! GroupCell
-        
-        let group = groups[indexPath.row]
-        cell.groupName.text = group["name"] as? String
-        
-        return cell
-    }
-    
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if groups != nil {
-            return groups.count
-        }
-        return 0
-    }
-    
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        let group = groups[indexPath.row] as PFObject
-        
-        Utils.deleteGroupItem(user.parseUserObject, group: group) // remove from parse
-        
-        groups.removeAtIndex(indexPath.row)
-        groupsTable.deleteRowsAtIndexPaths(NSArray(object: indexPath) as [AnyObject], withRowAnimation: .Fade)
-    }
-}*/
-
-/* class GroupsTableViewController: UITableViewController {
-
-@IBOutlet var groupsTable: UITableView!
-var groups : [PFObject]!
-let user = User.sharedInstance
-
-override func viewDidLoad() {
-super.viewDidLoad()
-
-groups = []
-loadGroups()
-// Do any additional setup after loading the view.
-}
-
-func loadGroups() {
-var groupsRelation = user.parseUserObject.relationForKey("groups") as PFRelation
-
-groupsRelation.query().findObjectsInBackgroundWithBlock {
-[unowned self] (groupsObj, error) -> Void in
-if error == nil {
-for group in groupsObj {
-if find(self.groups, group as! PFObject) ==  nil {
-self.groups.append(group as! PFObject)
-}
-}
-self.groupsTable.reloadData()
-}
-else {
-println(error)
-}
-}
-}
-
-override func didReceiveMemoryWarning() {
-super.didReceiveMemoryWarning()
-// Dispose of any resources that can be recreated.
-}
-
-func reloadTable() {
-loadGroups()
-self.groupsTable.reloadData()
-}
-
-override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-if (segue.identifier == "unwindToGroupsTable") {
-loadGroups()
-self.groupsTable.reloadData()
-}
-}
-
-@IBAction func unwindToGroupsTable(segue:UIStoryboardSegue) {
-
-}
-}
-
-extension GroupsTableViewController : UITableViewDataSource {
-
-override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-return 1
-}
-
-override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-var cell = tableView.dequeueReusableCellWithIdentifier("groupCell", forIndexPath: indexPath) as! GroupCell
-
-let group = groups[indexPath.row]
-cell.groupName.text = group["name"] as? String
-
-return cell
-}
-
-override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-if groups != nil {
-return groups.count
-}
-return 0
-}
-
-override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-let group = groups[indexPath.row] as PFObject
-
-Utils.deleteGroupItem(user.parseUserObject, group: group) // remove from parse
-
-groups.removeAtIndex(indexPath.row)
-groupsTable.deleteRowsAtIndexPaths(NSArray(object: indexPath) as [AnyObject], withRowAnimation: .Fade)
-}
-}*/

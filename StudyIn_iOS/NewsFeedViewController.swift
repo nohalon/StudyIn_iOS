@@ -54,7 +54,6 @@ class NewsFeedViewController: PFQueryTableViewController {
     override func queryForTable() -> PFQuery {
         var query = PFQuery(className: "FeedItem")
         
-        query.orderByDescending("createdAt")
         query.includeKey("user")
         query.includeKey("checkOut")
         query.includeKey("checkOut.location")
@@ -63,6 +62,7 @@ class NewsFeedViewController: PFQueryTableViewController {
         query.includeKey("statusUpdate")
         query.includeKey("statusUpdate.course")
         query.includeKey("statusUpdate.professor")
+        query.orderByDescending("createdAt")
         
         return query
     }
@@ -104,7 +104,6 @@ class NewsFeedViewController: PFQueryTableViewController {
         var checkout = object.valueForKey("checkOut") as? PFObject
         var feedUser = FeedUser()
         
-        
         if (status != nil) {
             // Create a status update cell.
             let statusObj = status!
@@ -122,7 +121,7 @@ class NewsFeedViewController: PFQueryTableViewController {
             }
             
             let cell = tableView.dequeueReusableCellWithIdentifier("postCell") as! UserPostCell
-            cell.setUpCell(feedUser.name, statusText: statusText, course: courseText, professor: profText, photoURL: feedUser.facebookID);
+            cell.setUpCell(feedUser.name, statusText: statusText, course: courseText, professor: profText, photoURL: feedUser.facebookID, time: statusObj.createdAt);
             return cell;
         }
         else if (checkin != nil) {
@@ -135,16 +134,18 @@ class NewsFeedViewController: PFQueryTableViewController {
             }
             
             let cell = tableView.dequeueReusableCellWithIdentifier("checkInOutCell") as! UserCheckInOutCell
-            cell.setUpCell(feedUser.name, type: FeedObjectType.CHECKIN, location: locText, photoURL: feedUser.facebookID)
+            cell.setUpCell(feedUser.name, type: FeedObjectType.CHECKIN, location: locText, photoURL: feedUser.facebookID, time: checkInObj.createdAt)
             
             return cell;
         }
         else {
+            
             let checkOutObj = checkout!
-            feedUser = getUserInfo(object.valueForKey("user") as! PFObject)
+            let user1 = object["user"] as? PFObject
+            feedUser = getUserInfo(user1!)
             // Create a check-out cell.
             let cell = tableView.dequeueReusableCellWithIdentifier("checkInOutCell") as! UserCheckInOutCell
-            cell.setUpCell(feedUser.name, type: FeedObjectType.CHECKOUT, location: "", photoURL : feedUser.facebookID)
+            cell.setUpCell(feedUser.name, type: FeedObjectType.CHECKOUT, location: "", photoURL : feedUser.facebookID, time: checkOutObj.createdAt)
             
             return cell;
         }

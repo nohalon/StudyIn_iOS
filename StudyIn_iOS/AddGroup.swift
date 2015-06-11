@@ -37,6 +37,7 @@ class SearchView : UIView, UITableViewDataSource, UITableViewDelegate, UISearchB
         self.searchTableView.delegate = self
         self.searchBar.delegate = self
         loadAllGroups()
+        searchBar.resignFirstResponder()
     }
     
     func loadAllGroups() {
@@ -58,8 +59,13 @@ class SearchView : UIView, UITableViewDataSource, UITableViewDelegate, UISearchB
         
     }
     
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        searchBar.resignFirstResponder()
+    }
+    
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
         searchActive = true;
+        searchBar.becomeFirstResponder()
     }
     
     func searchBarTextDidEndEditing(searchBar: UISearchBar) {
@@ -164,10 +170,11 @@ class CreateGroupTableView : UITableViewController, UINavigationControllerDelega
     var doneItem : UIBarButtonItem!
     
     override func viewWillAppear(animated: Bool) {
-        self.groupName.becomeFirstResponder()
         self.groupName.addTarget(self, action: "groupNameTextFieldDidChange:", forControlEvents: UIControlEvents.EditingChanged)
         self.groupDescription.delegate = self
     }
+    
+
     
     override func viewDidLoad() {
         self.doneItem.enabled = false
@@ -175,6 +182,8 @@ class CreateGroupTableView : UITableViewController, UINavigationControllerDelega
     }
     
     func groupNameTextFieldDidChange(textField: UITextField) {
+        self.groupName.becomeFirstResponder()
+
         if doneItem != nil {
             if count(textField.text) > 0 {
                 self.doneItem.enabled = true
@@ -240,9 +249,13 @@ class AddGroup: UIViewController {
     @IBAction func indexChanged(sender: UISegmentedControl) {
         switch segmentedControl.selectedSegmentIndex {
         case SEARCH_VIEW_INDEX :
+            createView.createSubView?.groupName.resignFirstResponder()
+
             createView.hidden = true
             searchView.hidden = false
         case CREATE_VIEW_INDEX:
+            searchView.searchBar.resignFirstResponder()
+
             createView.hidden = false
             searchView.hidden = true
         default:
@@ -294,7 +307,7 @@ class AddGroup: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "embedCreateTableSegue" {
             createView.createSubView = segue.destinationViewController as? CreateGroupTableView
-            createView.createSubView?.doneItem = self.doneItem
+            createView.createSubView!.doneItem = self.doneItem
         }
         if segue.identifier == "unwindToGroupsTable" {
             var destinationController = segue.destinationViewController as! GroupsTableViewController

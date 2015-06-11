@@ -33,6 +33,7 @@ class ConversationsTableViewController : UITableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.hidden = false
         loadConversations()
     }
     
@@ -72,7 +73,7 @@ class ConversationsTableViewController : UITableViewController {
             self.selectedConvo = conversations![path.row]
 
             if let messageCell = sender as? ConversationCell {
-                messageViewController.groupId = messageCell.groupId!
+                //messageViewController.groupId = messageCell.groupId!
                 messageViewController.otherUserName = messageCell.userName.text
                 messageViewController.convoObject = selectedConvo
             }
@@ -146,38 +147,13 @@ extension ConversationsTableViewController : UITableViewDataSource {
         
         cell.userName.text = otherUserName
         cell.lastMessage.text = lastMessage // TODO: Get actual last message
-        cell.groupId = convo["groupId"] as? String
-        cell.timeStamp.text = self.getFormattedDate(convo, lastMsg: lastMessageObj) //TODO: Get the formatted date for the last message.
+        //cell.groupId = convo["groupId"] as? String
+        cell.timeStamp.text = Utils.getFormattedDateForConvo(convo, lastMsg: lastMessageObj) //TODO: Get the formatted date for the last message.
         
         return cell
     }
     
-    // Gets a short style formatted date: e.g 11/8/14
-    func getFormattedDate(convoObj : PFObject, lastMsg : PFObject?) -> String {
-        var date = convoObj.createdAt
-        
-        //var lastMessage = object["lastMessage"] as? PFObject
-        
-        var lastMsgDate = lastMsg?.createdAt
-        if lastMsgDate != nil {
-            date = lastMsgDate
-        }
-        
-        var time = JSQMessagesTimestampFormatter.sharedFormatter().relativeDateForDate(date)
-        
-        if (time == "Today") {
-            time = JSQMessagesTimestampFormatter.sharedFormatter().timeForDate(date)
-        }
-        else if (time != "Yesterday") {
-            let formatter = NSDateFormatter()
-            formatter.dateStyle = NSDateFormatterStyle.ShortStyle
-            
-            time = formatter.stringFromDate(date)
-        }
-        
-        return time
-    }
-    
+
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         var convo = conversations![indexPath.row] as PFObject
         Utils.deleteMessageItem(convo)

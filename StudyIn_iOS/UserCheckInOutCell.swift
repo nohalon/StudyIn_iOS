@@ -15,11 +15,12 @@ class UserCheckInOutCell : PFTableViewCell {
     @IBOutlet weak var checkInOutLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var locationIconImg: UIImageView!
+    @IBOutlet weak var timeStamp: UILabel!
     
     let user = User.sharedInstance
     var userPhotoURL : String!
 
-    func setUpCell(userName : String, type : FeedObjectType, location : String, photoURL : String) {
+    func setUpCell(userName : String, type : FeedObjectType, location : String, photoURL : String, time: NSDate) {
         nameLabel.text = userName
         self.userPhotoURL = photoURL
         locationLabel.sizeToFit()
@@ -39,6 +40,7 @@ class UserCheckInOutCell : PFTableViewCell {
         
         checkInOutLabel.sizeToFit()
 
+        timeStamp.text = Utils.getFormattedDateForPost(time)
         locationLabel.text = location
         addUserPhoto()
     }

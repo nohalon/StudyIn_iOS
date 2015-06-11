@@ -10,6 +10,49 @@ import Foundation
 
 class Utils {
     
+    class func getFormattedDateForPost(date : NSDate) -> String {
+        
+        var time = JSQMessagesTimestampFormatter.sharedFormatter().relativeDateForDate(date)
+        
+        if (time == "Today") {
+            time = JSQMessagesTimestampFormatter.sharedFormatter().timeForDate(date)
+        }
+        else if (time != "Yesterday") {
+            let formatter = NSDateFormatter()
+            formatter.dateStyle = NSDateFormatterStyle.ShortStyle
+            
+            time = formatter.stringFromDate(date)
+        }
+        
+        return time
+    }
+    
+    // Gets a short style formatted date: e.g 11/8/14
+    class func getFormattedDateForConvo(convoObj : PFObject, lastMsg : PFObject?) -> String {
+            var date = convoObj.createdAt
+            
+            //var lastMessage = object["lastMessage"] as? PFObject
+            
+            var lastMsgDate = lastMsg?.createdAt
+            if lastMsgDate != nil {
+                date = lastMsgDate
+            }
+            
+            var time = JSQMessagesTimestampFormatter.sharedFormatter().relativeDateForDate(date)
+            
+            if (time == "Today") {
+                time = JSQMessagesTimestampFormatter.sharedFormatter().timeForDate(date)
+            }
+            else if (time != "Yesterday") {
+                let formatter = NSDateFormatter()
+                formatter.dateStyle = NSDateFormatterStyle.ShortStyle
+                
+                time = formatter.stringFromDate(date)
+            }
+            
+            return time
+    }
+    
     class func startChat(user1: PFObject, user2: PFObject) -> String {
         var userId1 = user1.objectId
         var userId2 = user2.objectId
@@ -31,10 +74,21 @@ class Utils {
         sender.presentViewController(alertController, animated: true, completion: nil)
     }
     
-    class func createMessageItem(user1: PFObject, user2: PFObject, groupId: String) -> PFObject {
-        var query = PFQuery(className: "Conversation")
-        query.whereKey("user1", equalTo: PFObject(withoutDataWithClassName: "StudyInUser", objectId: user1.objectId))
-        query.whereKey("groupId", equalTo: groupId)
+    class func createMessageItem(user1: PFObject, user2: PFObject) -> PFObject {
+        var query1 = PFQuery(className: "Conversation")
+        query1.whereKey("user1", equalTo: PFObject(withoutDataWithClassName: "StudyInUser", objectId: user1.objectId))
+        query1.whereKey("user2", equalTo: PFObject(withoutDataWithClassName: "StudyInUser", objectId: user2.objectId))
+            
+        var query2 = PFQuery(className: "Conversation")
+        query2.whereKey("user2", equalTo: PFObject(withoutDataWithClassName: "StudyInUser", objectId: user1.objectId))
+        query2.whereKey("user1", equalTo: PFObject(withoutDataWithClassName: "StudyInUser", objectId: user2.objectId))
+
+        
+        var query = PFQuery.orQueryWithSubqueries([query1, query2])
+        
+        //query.whereKey("user1", equalTo: PFObject(withoutDataWithClassName: "StudyInUser", objectId: user1.objectId))
+        //query.whereKey("groupId", equalTo: groupId)
+        
         var message = PFObject(className: "Conversation")
         var convoCount : Int! = PFCloud.callFunction("conversationCount", withParameters: [:]) as! Int
         
@@ -42,9 +96,7 @@ class Utils {
             if error == nil {
                 if objects.count == 0 {
                     message["user1"] = user1
-                    message["groupId"] = groupId
                     message["user2"] = user2
-                    //message["messages"] = []
                     message["counter"] = 0
                     message["intgerID"] = (convoCount + 1)
                     message["updatedAction"] = NSDate()

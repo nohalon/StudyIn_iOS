@@ -23,7 +23,7 @@ class MsgUser {
 
 class MessageViewController : JSQMessagesViewController {
     let user = User.sharedInstance
-    var groupId: String!
+    //var groupId: String!
     var otherUserName: String!
     var convoObject : PFObject?
     var refreshControl : UIRefreshControl!
@@ -69,6 +69,7 @@ class MessageViewController : JSQMessagesViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
+    
         self.navigationItem.backBarButtonItem = nil
     }
     
@@ -106,19 +107,21 @@ class MessageViewController : JSQMessagesViewController {
             if self.isLoading == false {
                 self.isLoading = true
                 var lastMessage = self.messages.last
+                var isNew = false
                 
                 var query = PFQuery(className: "Message")
-                query.whereKey("groupId", equalTo: self.groupId)
-                //query.whereKey("conversation", equalTo: convoObject)
+                query.whereKey("conversation", equalTo: convoObject)
                 
                 if isRefreshing {
                     if messages.first != nil {
                         query.whereKey("createdAt", lessThan: messages.first?.date)
+                        isNew = false
                     }
                 }
                 else {
                     if lastMessage != nil {
                         query.whereKey("createdAt", greaterThan: lastMessage?.date)
+                        isNew = true
                     }
                 }
                 
@@ -132,7 +135,7 @@ class MessageViewController : JSQMessagesViewController {
                         
                         self.automaticallyScrollsToMostRecentMessage = false
                         for object in objects {
-                            self.addMessage(object as! PFObject)
+                            self.addMessage(object as! PFObject, isNew: isNew)
                         }
                         
                         if self.messages.count != 0 {
@@ -157,7 +160,7 @@ class MessageViewController : JSQMessagesViewController {
         }
     }
     
-    func addMessage(var object: PFObject) {
+    func addMessage(var object: PFObject, var isNew: Bool) {
         var user = object["user"] as! PFObject
         
         var fbId = user["facebookID"] as! String
@@ -168,17 +171,25 @@ class MessageViewController : JSQMessagesViewController {
         if let data = NSData(contentsOfURL: imageUrl!) {
             var userImage = UIImage(data: data)
             var user = MsgUser(id: fbId, name: userName, image: userImage!)
-            self.users.insert(user, atIndex: 0)
+            if !isNew {
+                self.users.insert(user, atIndex: 0)
+            } else {
+                self.users.append(user)
+            }
         }
-        self.messages.insert(message, atIndex: 0)
+        if !isNew {
+            self.messages.insert(message, atIndex: 0)
+        } else {
+            self.messages.append(message)
+        }
     }
     
     func sendMessage(text: String) {
         // Save a Message object to Parse
         var object = PFObject(className: "Message")
         object["user"] = self.user.parseUserObject
-        object["groupId"] = self.groupId
         object["text"] = text
+        object["conversation"] = self.convoObject
         var msgCount : Int! = PFCloud.callFunction("messageCount", withParameters: [:]) as! Int
         object["integerID"] = (msgCount + 1)
         
@@ -192,13 +203,11 @@ class MessageViewController : JSQMessagesViewController {
                 self.convoObject!.saveInBackground()
                 
                 self.loadMessages(false)
+                self.isLoading = false
             } else {
                 println("Error sending message")
             }
         }
-        
-        //Util.sendPushNotification(self.user.id, groupId: groupId, text: text)
-        //Util.updateMessageCounter(self.user.id, groupId: groupId, lastMessage: text)
         
         self.finishSendingMessage()
     }

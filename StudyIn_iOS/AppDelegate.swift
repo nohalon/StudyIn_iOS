@@ -24,6 +24,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FBLoginView.self
         FBProfilePictureView.self
         
+        var navigationBarAppearace = UINavigationBar.appearance()
+        
+        navigationBarAppearace.tintColor = Utils.uicolorFromHex(0xffffff)
+        navigationBarAppearace.barTintColor = Utils.uicolorFromHex(0xCCCCCC)
+        
+        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
+        
         // Register for Push Notitications
         if application.applicationState != UIApplicationState.Background {
             // Track an app open here if we launch with a push, unless

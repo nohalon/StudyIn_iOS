@@ -52,6 +52,7 @@ class MessageComposer : UITableViewController, UITableViewDataSource {
         loadUsers()
     }
     
+    
     func backButtonAction(sender: UIBarButtonItem) {
         self.tabBarController?.tabBar.hidden = false
         self.navigationController?.popToRootViewControllerAnimated(false)
@@ -59,8 +60,8 @@ class MessageComposer : UITableViewController, UITableViewDataSource {
     
     func sendMessageAction(sender: UIBarButtonItem) {
         if let theSelectedUser = selectedUser {
-            self.groupId = Utils.startChat(self.user.parseUserObject, user2: theSelectedUser)
-            self.convoObj = Utils.createMessageItem(self.user.parseUserObject, user2: theSelectedUser, groupId: self.groupId!)
+            //self.groupId = Utils.startChat(self.user.parseUserObject, user2: theSelectedUser)
+            self.convoObj = Utils.createMessageItem(self.user.parseUserObject, user2: theSelectedUser)
             
             performSegueWithIdentifier("toMessageView", sender: self)
         }
@@ -83,12 +84,14 @@ class MessageComposer : UITableViewController, UITableViewDataSource {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "toMessageView" {
             var messageViewController = segue.destinationViewController as! MessageViewController
-            messageViewController.groupId = self.groupId
             messageViewController.convoObject = self.convoObj
             self.navigationItem.title = nil
             if let theSelectedUser = selectedUser {
                 messageViewController.otherUserName = theSelectedUser["name"] as! String
             }
+        }
+        else  {
+            self.tabBarController?.tabBar.hidden = false
         }
     }
     

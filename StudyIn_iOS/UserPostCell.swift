@@ -13,16 +13,13 @@ class UserPostCell : PFTableViewCell {
     @IBOutlet weak var fbProfPic: FBProfilePictureView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var postLabel: UILabel!
+    @IBOutlet weak var timeStamp: UILabel!
     
     let user = User.sharedInstance
     var userPhotoURL : String!
 
-    func setUpCell(userName: String, statusText : String, course : String, professor : String, photoURL : String) {
+    func setUpCell(userName: String, statusText : String, course : String, professor : String, photoURL : String, time: NSDate) {
         self.userPhotoURL = photoURL
-        
-        //var myStatus = statusText + "\n\n"
-        //var myCourse = "Course: " + course + "\n"
-        //var myProf = "Professor: " + professor
         
         nameLabel.text = userName
         postLabel.numberOfLines = 0
@@ -34,7 +31,7 @@ class UserPostCell : PFTableViewCell {
         var postStr = constructAttributedPostText(statusText, strCourse: course, strProf: professor)
 
         postLabel.attributedText = postStr
-
+        timeStamp.text = Utils.getFormattedDateForPost(time)
         addUserPhoto()
     }
     
